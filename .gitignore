@@ -1,0 +1,15 @@
+/.idea/
+/web/robots.txt
+
+/log/
+
+node_modules/
+
+# frontend #
+/.sass-cache
+/bower_components
+/.nuxt
+/dist
+/public
+/assets
+npm-debug.log

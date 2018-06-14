@@ -1,0 +1,40 @@
+{
+    "name": "kanban-monk",
+    "version": "0.0.0",
+    "description": "Time tool helper",
+    "private": true,
+    "main": "index.js",
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate",
+        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "precommit": "npm run lint"
+    },
+    "dependencies": {
+        "nuxt": "^1.0.0"
+    },
+    "devDependencies": {
+        "babel-eslint": "^8.2.1",
+        "eslint": "^4.15.0",
+        "eslint-friendly-formatter": "^3.0.0",
+        "eslint-loader": "^1.7.1",
+        "eslint-plugin-vue": "^4.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/StetsD/kanban-monk.git"
+    },
+    "keywords": [
+        "time",
+        "tool",
+        "time-management"
+    ],
+    "author": "'stdm' <must.be.std@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/StetsD/kanban-monk/issues"
+    },
+    "homepage": "https://github.com/StetsD/kanban-monk#readme"
+}
