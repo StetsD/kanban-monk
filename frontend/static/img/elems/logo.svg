@@ -1,0 +1,26 @@
+<svg width="240" height="24" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M87.3776 0L81.418 6L87.3776 12M75.4585 0V12M50.3548 12V0L62.2739 12V0M0 12V0L6.09303 6.66667L12.0386 0V12" transform="translate(151.622 11)" stroke="url(#paint0_linear)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.9393 6C10.585 6 11.9191 4.65685 11.9191 3C11.9191 1.34315 10.585 0 8.9393 0H0V12" transform="translate(76.0903 11)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0 6C1.64568 6 2.97977 4.65685 2.97977 3C2.97977 1.34315 1.64568 0 0 0" transform="translate(85.0298 17)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.9191 0L5.95953 6L11.9191 12M0 0V12" transform="translate(1 11)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0 12L5.95953 0L11.9191 12H5.95953" transform="translate(26.0298 11)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0 12L5.95953 0L11.9191 12H5.95953" transform="translate(101.121 11)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0 12V0L11.9191 12V0" transform="translate(51.0601 11)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0 12V0L11.9191 12V0" transform="translate(126.15 11)" stroke="#777777" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="10" cy="10.1538" rx="10" ry="10.1538" transform="translate(173 2.69238)" stroke="url(#paint1_linear)" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="5" cy="5.07692" rx="5" ry="5.07692" transform="translate(178 1)" fill="white" stroke="url(#paint2_linear)" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="paint0_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(163.174 -36.6667 7614.89 10268.4 -3818.68 -5102.88)">
+<stop stop-color="#00C9FF"/>
+<stop offset="1" stop-color="#92FE9D"/>
+</linearGradient>
+<linearGradient id="paint1_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(37.3492 -62.0513 1742.98 17377.3 -874.063 -8635.65)">
+<stop stop-color="#00C9FF"/>
+<stop offset="1" stop-color="#92FE9D"/>
+</linearGradient>
+<linearGradient id="paint2_linear" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(18.6746 -31.0257 871.492 8688.67 -437.031 -4317.82)">
+<stop stop-color="#00C9FF"/>
+<stop offset="1" stop-color="#92FE9D"/>
+</linearGradient>
+</defs>
+</svg>
