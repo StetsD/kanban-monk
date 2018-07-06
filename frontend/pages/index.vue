@@ -2,19 +2,24 @@
 	<section class="gate">
 	    <Logo/>
 		<h1 class="gate__title">Sign in</h1>
+		<form class="gate__form">
+			<Input/>
+		</form>
 	</section>
 </template>
 
 <script>
 
 import Logo from '~/components/Logo';
+import Input from '~/components/form/Input';
 
 export default {
 
 
 
     components: {
-        Logo
+        Logo,
+		Input
     }
 }
 
@@ -25,19 +30,12 @@ export default {
 
 	.gate{
 		&__title{
-			position: absolute;
 			width: 106px;
 			height: 43px;
-			left: 33px;
-			top: 197px;
-
-			font-family: Roboto;
-			font-style: normal;
 			font-weight: 300;
-			line-height: normal;
 			font-size: 36px;
-
 			color: $title;
+		    margin: 126px 0 0 24px;
 		}
 	}
 
