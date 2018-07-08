@@ -17,7 +17,13 @@
 				text="Login"
 				cls="btn_act"
 				/>
+			<nuxt-link
+				class="gate__link-forgot"
+				to="/plug">
+				forgot your password?</nuxt-link>
 		</form>
+		<CallToAction/>
+
 	</section>
 </template>
 
@@ -26,15 +32,14 @@
 import Logo from '~/components/Logo';
 import Input from '~/components/form/Input';
 import Btn from '~/components/Btn';
+import CallToAction from '~/components/CallToAction';
 
 export default {
-
-
-
     components: {
         Logo,
 		Input,
-		Btn
+		Btn,
+		CallToAction
     }
 }
 
@@ -62,8 +67,16 @@ export default {
 			.btn{
 				position: absolute;
 				right: 0;
-				margin: 32px 0 0 0;
+			    margin: 17px 0 0 0;
 			}
+		}
+
+		&__link-forgot{
+			position: absolute;
+			font-size: 18px;
+			right: 0;
+			color: $passiveLink;
+		    margin: 103px 0 0 0;
 		}
 	}
 
