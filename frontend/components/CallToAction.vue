@@ -5,7 +5,7 @@
 				no account yet?<br/>
 				<span>sign up - be like a monk</span>
 			</div>
-			<Btn text="Sign Up" cls="call-act__btn"/>
+			<Btn text="Sign Up" cls="call-act__btn" @act="$emit('tgl')"/>
 		</div>
 	</div>
 </template>

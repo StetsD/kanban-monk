@@ -1,5 +1,5 @@
 <template>
-	<div v-if="text" :class="['btn', cls ? cls : '']">
+	<div v-if="text" :class="['btn', cls ? cls : '']" @click="$emit('act')">
 		<div>{{text}}</div>
 	</div>
 </template>

@@ -1,28 +1,66 @@
 <template>
 	<section class="gate">
 	    <Logo/>
-		<h1 class="gate__title">Sign in</h1>
-		<form class="gate__form" autocomplete="off">
-			<Input
-				name="username"
-				type="text"
-				ph="Login"
-				cls="form__group_i-user"/>
-			<Input
-				name="password"
-				type="password"
-				ph="Password"
-				cls="form__group_i-key"/>
-			<Btn
-				text="Login"
-				cls="btn_act"
-				/>
-			<nuxt-link
-				class="gate__link-forgot"
-				to="/plug">
-				forgot your password?</nuxt-link>
-		</form>
-		<CallToAction/>
+		<transition name="fade">
+			<div v-if="vSignIn" class="gate__sign-in">
+				<h1 class="gate__title">Sign in</h1>
+				<form class="gate__form" autocomplete="off">
+					<Input
+						name="username"
+						type="text"
+						ph="Login"
+						cls="form__group_i-user"/>
+					<Input
+						name="password"
+						type="password"
+						ph="Password"
+						cls="form__group_i-key"/>
+					<Btn
+						text="Login"
+						cls="btn_act"
+						/>
+					<nuxt-link
+						class="gate__link-forgot"
+						to="/plug">
+						forgot your password?</nuxt-link>
+				</form>
+				<CallToAction @tgl="tglForm"/>
+			</div>
+		</transition>
+		<transition name="fade">
+			<div v-if="vSignUp" class="gate__sign-up">
+				<h1 class="gate__title">Sign up</h1>
+				<form class="gate__form" autocomplete="off">
+					<Input
+						name="username"
+						type="text"
+						ph="Login"
+						cls="form__group_i-user"/>
+					<Input
+						name="email"
+						type="email"
+						ph="Email"
+						cls="form__group_i-user"/>
+					<Input
+						name="password"
+						type="password"
+						ph="Password"
+						cls="form__group_i-key"/>
+					<Input
+						name="password2"
+						type="password"
+						ph="Retry password"/>
+					<Btn
+						text="Sign up"
+						cls="btn_act"
+						/>
+					<div
+						class="gate__link-forgot" @click="tglForm">
+						Sign In</div>
+				</form>
+			</div>
+		</transition>
+
 
 	</section>
 </template>
@@ -40,18 +78,31 @@ export default {
 		Input,
 		Btn,
 		CallToAction
-    }
+    },
+	data(){
+		return {
+			vSignIn: true,
+			vSignUp: false
+		}
+	},
+	methods: {
+		tglForm(){
+			console.log('lalalalal')
+			this.vSignIn = !this.vSignIn;
+			this.vSignUp = !this.vSignUp;
+		}
+	}
 }
 
 </script>
 
 <style lang="scss">
 	@import '../assets/css/vars/colors';
+	@import '../assets/css/tool/mixins';
 
 	.gate{
+
 		&__title{
-			width: 106px;
-			height: 43px;
 			font-weight: 300;
 			font-size: 36px;
 			color: $title;
