@@ -21,7 +21,8 @@ module.exports = {
     ],
     link: [
 		{rel: 'icon',type: 'image/x-icon',href: '/favicon.ico'},
-		{href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic", rel: "stylesheet"}
+		{href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic", rel: "stylesheet"},
+		{href: "https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic", rel: "stylesheet"}
 	]
   },
   loading: {

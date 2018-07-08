@@ -13,6 +13,10 @@
 				type="password"
 				ph="Password"
 				cls="form__group_i-key"/>
+			<Btn
+				text="Login"
+				cls="btn_act"
+				/>
 		</form>
 	</section>
 </template>
@@ -21,6 +25,7 @@
 
 import Logo from '~/components/Logo';
 import Input from '~/components/form/Input';
+import Btn from '~/components/Btn';
 
 export default {
 
@@ -28,7 +33,8 @@ export default {
 
     components: {
         Logo,
-		Input
+		Input,
+		Btn
     }
 }
 
@@ -44,14 +50,20 @@ export default {
 			font-weight: 300;
 			font-size: 36px;
 			color: $title;
-		    margin: 126px 0 0 24px;
+	        margin: 126px 0 0 33px;
 		}
 
 		&__form{
 			margin: 30px auto 0;
-		    width: 84%;
-		    position: relative;
-		    left: -6px;
+			width: 80.5%;
+			position: relative;
+			left: -7px;
+
+			.btn{
+				position: absolute;
+				right: 0;
+				margin: 32px 0 0 0;
+			}
 		}
 	}
 
