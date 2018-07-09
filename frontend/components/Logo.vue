@@ -5,6 +5,14 @@
     </a>
 </template>
 
+<script>
+
+	export default {
+		props: []
+	}
+
+</script>
+
 <style lang="scss">
 @import '../assets/css/tool/mixins';
 
