@@ -26,6 +26,7 @@
 			}
 		}
 
+		//simple animate
 		&__path_simple.active{
 			@include animationTemp(logo-a, 1.2s, 1.0s, ease-in);
 		    animation-fill-mode: forwards;
@@ -66,6 +67,7 @@
 		    }
 		}
 
+		// full animate
 		&__path_full{
 			@include animationTemp(logo-a-full, 0.2s, 1.8s, ease-out);
 			animation-fill-mode: forwards;
