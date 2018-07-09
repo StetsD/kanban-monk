@@ -82,6 +82,12 @@
 	-ms-animation:     $name $duration $delay $ease;
 }
 
+@mixin animationTemp ($name, $duration: 300ms, $delay: 0, $ease: ease, $infinite: '', $direction: '', $fill: '') {
+	-webkit-animation: $name $duration $delay $ease unquote($infinite) unquote($direction);
+	-moz-animation:    $name $duration $delay $ease unquote($infinite) unquote($direction);
+	-ms-animation:    $name $duration $delay $ease unquote($infinite) unquote($direction);
+}
+
 @mixin transition ($transition) {
 	-webkit-transition: $transition;
 	-moz-transition:    $transition;

@@ -1,6 +1,5 @@
 <template>
 	<section class="gate">
-	    <Logo/>
 		<transition name="fade">
 			<div v-if="vSignIn" class="gate__sign-in">
 				<h1 class="gate__title">Sign in</h1>

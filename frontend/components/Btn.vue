@@ -35,7 +35,7 @@
 			box-shadow: 0px 3px 7px rgba(0, 201, 255, 0.21);
 			color: $w;
 			font-weight: normal;
-			@include transition(all 0.3s 0.0s ease-out);
+			@include transition(all 0.3s ease-out);
 			&:hover{
 				background: linear-gradient(33.61deg, $action 0%, $action_g 237.92%);
 				box-shadow: 0px 0px 0px rgba(0, 201, 255, 0.21);
