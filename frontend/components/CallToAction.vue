@@ -25,10 +25,11 @@
 	.call-act{
 		width: 100%;
 		height: 98px;
-		margin: 289px 0 0 0;
 	    padding: 11px 0 0;
 		box-sizing: border-box;
 		background: linear-gradient(53.61deg, $action -1.98%, $action_g 184.46%);
+		position: fixed;
+		bottom: 0;
 
 		&__inner{
 			display: flex;

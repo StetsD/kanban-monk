@@ -40,36 +40,36 @@
 		    animation-fill-mode: forwards;
 		    @-webkit-keyframes logo-a {
 				0% {@include rotate(0deg); left: 0px;}
-				5% {left: 5px; @include rotate(-40deg);}
-				65% {left: 172px; @include rotate(30deg);}
+				5% {left: 5px; @include rotate(-60deg);}
+				65% {left: 182px; @include rotate(60deg);}
 				70% {@include rotate(0deg); left: 172px; @include opacity(1); visibility: visible;}
 				100% {@include opacity(0); visibility: hidden;}
 		    }
 		    @-moz-keyframes logo-a {
 				0% {@include rotate(0deg); left: 0px;}
-				5% {left: 5px; @include rotate(-40deg);}
-				65% {left: 172px; @include rotate(30deg);}
+				5% {left: 5px; @include rotate(-60deg);}
+				65% {left: 182px; @include rotate(60deg);}
 				70% {@include rotate(0deg); left: 172px; @include opacity(1); visibility: visible;}
 				100% {@include opacity(0); visibility: hidden;}
 		    }
 		    @-o-keyframes logo-a {
 				0% {@include rotate(0deg); left: 0px;}
-				5% {left: 5px; @include rotate(-40deg);}
-				65% {left: 172px; @include rotate(30deg);}
+				5% {left: 5px; @include rotate(-60deg);}
+				65% {left: 182px; @include rotate(60deg);}
 				70% {@include rotate(0deg); left: 172px; @include opacity(1); visibility: visible;}
 				100% {@include opacity(0); visibility: hidden;}
 		    }
 		    @-ms-keyframes logo-a {
 				0% {@include rotate(0deg); left: 0px;}
-				5% {left: 5px; @include rotate(-40deg);}
-				65% {left: 172px; @include rotate(30deg);}
+				5% {left: 5px; @include rotate(-60deg);}
+				65% {left: 182px; @include rotate(60deg);}
 				70% {@include rotate(0deg); left: 172px; @include opacity(1); visibility: visible;}
 				100% {@include opacity(0); visibility: hidden;}
 		    }
 		    @keyframes logo-a {
 				0% {@include rotate(0deg); left: 0px;}
-				5% {left: 5px; @include rotate(-40deg);}
-				65% {left: 172px; @include rotate(30deg);}
+				5% {left: 5px; @include rotate(-60deg);}
+				65% {left: 182px; @include rotate(60deg);}
 				70% {@include rotate(0deg); left: 172px; @include opacity(1); visibility: visible;}
 				100% {@include opacity(0); visibility: hidden;}
 		    }

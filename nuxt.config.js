@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   srcDir: './frontend',
   mode: 'spa',
@@ -29,6 +31,14 @@ module.exports = {
     color: '#3B8070'
   },
   build: {
+	  vendor: [
+	  	'hammerjs'
+	  ],
+	  plugins: [
+		  new webpack.ProvidePlugin({
+			  Hammerjs: 'hammerjs'
+		  })
+	  ],
     extend(config, {
       isDev,
       isClient
