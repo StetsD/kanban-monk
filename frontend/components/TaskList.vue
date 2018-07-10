@@ -1,6 +1,10 @@
 <template>
 	<div class="task-list">
-		<Task/>
+		<Task title="How to be monk?" action="start"/>
+		<Task title="How to be monk?" action="start"/>
+		<Task title="How to be monk?" action="start"/>
+		<Task title="How to be monk?" action="start"/>
+		<Task title="How to be monk?" action="start"/>
 	</div>
 </template>
 
@@ -14,6 +18,8 @@
 	}
 </script>
 
-<style>
-
+<style lang="scss">
+	.task-list{
+	    margin: 11px 0 0 0;
+	}
 </style>
