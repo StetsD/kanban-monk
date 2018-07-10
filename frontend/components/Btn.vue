@@ -25,7 +25,6 @@
 		font-size: 24px;
 		color: $action;
 		border-radius: 30px;
-		margin: 18px 0 0 0;
     	padding: 16px 31px;
 		background: $w;
 		font-weight: 300;
@@ -40,6 +39,16 @@
 				background: linear-gradient(33.61deg, $action 0%, $action_g 237.92%);
 				box-shadow: 0px 0px 0px rgba(0, 201, 255, 0.21);
 			}
+		}
+
+		&.btn_std{
+			background-color: $w;
+			box-shadow: 0px 3px 7px rgba(0, 201, 255, 0.21);
+			padding: 17px 27px;
+		}
+
+		&.btn_minimal{
+			color: $taskDesc;
 		}
 	}
 </style>
