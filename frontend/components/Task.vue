@@ -1,5 +1,5 @@
 <template>
-	<div ref="task" class="task-list__item swiped">
+	<div ref="task" class="task-list__item swiped ending">
 		<div class="task-list__item-inner">
 			<div class="task-list__essence">
 				<div class="task-list__title">
@@ -11,12 +11,34 @@
 			<div class="task-list__tool-wrapper">
 				<div class="task-list__tool">
 					<div class="task-list__tool-inner">
-						<div class="task-list__tool-time">
-							13:22
+
+						<div class="task-list__tool-running">
+							<div class="task-list__tool-stat">
+								13:22
+							</div>
+							<div class="task-list__tool-stat">
+								stop task
+							</div>
 						</div>
-						<div class="task-list__tool-stat">
-							stop task
+
+						<div class="task-list__tool-resting">
+							<div class="task-list__tool-stat">
+								time to rest
+							</div>
+							<div class="task-list__tool-stat">
+								4:59
+							</div>
 						</div>
+
+						<div class="task-list__tool-ending">
+							<div class="task-list__tool-stat">
+								start again
+							</div>
+							<div class="task-list__tool-stat">
+								task done
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -123,6 +145,8 @@
 	}
 
 	.task-list__tool{
+		display: flex;
+	    justify-content: center;
 		width: 45%;
 		height: 80px;
 		position: absolute;
@@ -134,27 +158,86 @@
 	.task-list__tool-inner{
 		display: flex;
 		align-items: center;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: auto;
-	    height: 36px;
 	}
 
 	.task-list__tool-time{
-		color: $w;
-		font-size: 36px;
-		font-family: Roboto Condensed;
-		font-weight: 300;
+
 	}
 
 	.task-list__tool-stat{
 		color: $w;
-		line-height: 15px;
-		font-size: 18px;
-		width: 35px;
+		position: relative;
+			//state
+		&:nth-child(1){
+			.running &{
+				font-size: 36px;
+				font-family: Roboto Condensed;
+				top: 3px;
+			    margin: 0 20px 0 0;
+			}
+			.resting & {
+				line-height: 15px;
+				font-size: 18px;
+				width: 55px;
+				top: 2px;
+			    margin: 0 15px 0 0px;
+			}
+			.ending & {
+				line-height: 15px;
+				font-size: 18px;
+				width: 55px;
+				top: 2px;
+				margin: 0 15px 0 1px;
+				&::after{
+					content: '';
+					display: block;
+					background-color: $w;
+					width: 1px;
+					height: 32px;
+					position: absolute;
+				    right: -5px;
+				    top: -2px;
+				}
+			}
+		}
+		&:nth-child(2){
+			.running &{
+				line-height: 15px;
+				font-size: 18px;
+				width: 35px;
+				top: 3px;
+			}
+			.resting &{
+				font-size: 36px;
+				font-family: Roboto Condensed;
+				top: 3px;
+			}
+			.ending &{
+				line-height: 15px;
+				font-size: 18px;
+				width: 55px;
+				top: 2px;
+			    margin: 0 -6px 0 6px;
+			}
+
+		}
+
+
+
 	}
+
+	.task-list__tool-running,
+	.task-list__tool-resting,
+	.task-list__tool-ending{
+		display: none;
+	}
+		//state
+	.task-list__item.running .task-list__tool-running,
+	.task-list__item.resting .task-list__tool-resting,
+	.task-list__item.ending .task-list__tool-ending{
+		display: flex;
+		align-items: center;
+	}
+
 
 </style>
