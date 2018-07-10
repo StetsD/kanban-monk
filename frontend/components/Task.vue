@@ -1,5 +1,5 @@
 <template>
-	<div ref="task" class="task-list__item">
+	<div ref="task" class="task-list__item swiped">
 		<div class="task-list__item-inner">
 			<div class="task-list__essence">
 				<div class="task-list__title">
@@ -13,6 +13,9 @@
 					<div class="task-list__tool-inner">
 						<div class="task-list__tool-time">
 							13:22
+						</div>
+						<div class="task-list__tool-stat">
+							stop task
 						</div>
 					</div>
 				</div>
@@ -28,11 +31,11 @@
 		mounted(){
 			let swipeTask = new Hammerjs(this.$refs.task);
 
-			swipeTask.on('panleft', function(e){
+			swipeTask.on('swipeleft', function(e){
 				e.target.closest('.task-list__item').classList.add('swiped');
 			});
 
-			swipeTask.on('panright', function(e){
+			swipeTask.on('swiperight', function(e){
 				e.target.closest('.task-list__item').classList.remove('swiped');
 			});
 		}
@@ -67,13 +70,13 @@
 		align-items: center;
 		justify-content: space-between;
 		box-sizing: border-box;
-		@include transition(all 0.3s ease-out);
+		@include transition(all 0.2s ease-out);
 		.task-list__item:nth-child(1) & {
 			border-top: 1px solid $taskBorder;
 		}
 			//state
 		.task-list__item.swiped &{
-			width: 56%;
+			width: 55%;
 		}
 	}
 
@@ -120,12 +123,38 @@
 	}
 
 	.task-list__tool{
-		width: 44%;
+		width: 45%;
 		height: 80px;
 		position: absolute;
 		right: 0;
 		background: linear-gradient(35.88deg, $action -22.31%, $action_g 230.07%);
 		box-shadow: 0px 3px 7px rgba(0, 201, 255, 0.21);
+	}
+
+	.task-list__tool-inner{
+		display: flex;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+	    height: 36px;
+	}
+
+	.task-list__tool-time{
+		color: $w;
+		font-size: 36px;
+		font-family: Roboto Condensed;
+		font-weight: 300;
+	}
+
+	.task-list__tool-stat{
+		color: $w;
+		line-height: 15px;
+		font-size: 18px;
+		width: 35px;
 	}
 
 </style>
