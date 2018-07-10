@@ -2,7 +2,7 @@
 	<section class="gate">
 		<transition name="fade">
 			<div v-if="vSignIn" class="gate__sign-in">
-				<h1 class="gate__title">Sign in</h1>
+				<Title msg="Sign in" cls="title_gate"/>
 				<form class="gate__form" autocomplete="off">
 					<Input
 						name="username"
@@ -28,7 +28,7 @@
 		</transition>
 		<transition name="fade">
 			<div v-if="vSignUp" class="gate__sign-up">
-				<h1 class="gate__title">Sign up</h1>
+				<Title msg="Sign up" cls="title_gate"/>
 				<form class="gate__form" autocomplete="off">
 					<Input
 						name="username"
@@ -67,6 +67,7 @@
 <script>
 
 import Logo from '~/components/Logo';
+import Title from '~/components/Title';
 import Input from '~/components/form/Input';
 import Btn from '~/components/Btn';
 import CallToAction from '~/components/CallToAction';
@@ -74,6 +75,7 @@ import CallToAction from '~/components/CallToAction';
 export default {
     components: {
         Logo,
+		Title,
 		Input,
 		Btn,
 		CallToAction
@@ -100,14 +102,6 @@ export default {
 	@import '../assets/css/tool/mixins';
 
 	.gate{
-
-		&__title{
-			font-weight: 300;
-			font-size: 36px;
-			color: $title;
-	        margin: 126px 0 0 33px;
-		}
-
 		&__form{
 			margin: 30px auto 0;
 			width: 80.5%;

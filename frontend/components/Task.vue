@@ -1,12 +1,12 @@
 <template>
-  <div>
-
-  </div>
+	<div class="task-list__item">
+		
+	</div>
 </template>
 
 <script>
 	export default{
-		
+
 	}
 </script>
 
