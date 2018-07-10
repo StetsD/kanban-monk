@@ -26,6 +26,10 @@
 		&_task{
 			margin: 57px 0 0 32px;
 		}
+
+		&_task-page{
+			margin: 0;
+		}
 	}
 
 </style>

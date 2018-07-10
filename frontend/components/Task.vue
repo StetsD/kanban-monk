@@ -1,5 +1,5 @@
 <template>
-	<div ref="task" class="task-list__item swiped ending">
+	<div ref="task" class="task-list__item running">
 		<div class="task-list__item-inner">
 			<div class="task-list__essence">
 				<div class="task-list__title">
@@ -60,6 +60,10 @@
 			swipeTask.on('swiperight', function(e){
 				e.target.closest('.task-list__item').classList.remove('swiped');
 			});
+
+			this.$refs.task.addEventListener('click', e => {
+				this.$router.push(`${this.$route.path}/1`);
+			}, false);
 		}
 	}
 </script>
@@ -67,6 +71,11 @@
 <style lang="scss">
 	@import '../assets/css/vars/colors';
 	@import '../assets/css/tool/mixins';
+
+	//TASK STATES
+	// - running
+	// - resting
+	// - ending
 
 	.task-list__item{
 		position: relative;
@@ -160,10 +169,6 @@
 		align-items: center;
 	}
 
-	.task-list__tool-time{
-
-	}
-
 	.task-list__tool-stat{
 		color: $w;
 		position: relative;
@@ -219,11 +224,7 @@
 				top: 2px;
 			    margin: 0 -6px 0 6px;
 			}
-
 		}
-
-
-
 	}
 
 	.task-list__tool-running,
