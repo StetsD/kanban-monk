@@ -1,7 +1,7 @@
 <template lang="html">
 	<div class="">
 		<Menu/>
-		<TaskList/>
+		<TaskList :tasks="task"/>
 		<TaskAdder/>
 	</div>
 </template>
@@ -16,6 +16,11 @@ export default {
 		Menu,
 		TaskList,
 		TaskAdder
+	},
+	data(){
+		return {
+			task: this.$store.getters['tasks/getTasks']
+		}
 	}
 }
 </script>

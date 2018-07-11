@@ -1,10 +1,11 @@
 <template>
 	<div class="task-list">
-		<Task title="How to be monk?" action="start"/>
-		<Task title="How to be monk?" action="start"/>
-		<Task title="How to be monk?" action="start"/>
-		<Task title="How to be monk?" action="start"/>
-		<Task title="How to be monk?" action="start"/>
+		<Task
+			v-for="(task, i) in tasks"
+			:key="i"
+			:title="task.title"
+			:action="task.state"
+		/>
 	</div>
 </template>
 
@@ -12,6 +13,7 @@
 	import Task from '~/components/Task';
 
 	export default {
+		props: ['tasks'],
 		components: {
 			Task
 		}
