@@ -10,7 +10,7 @@
 		<div class="task-page__ctrl">
 			<Btn text="Done" cls="btn_std"/>
 			<Btn text="Start" cls="btn_act"/>
-			<Btn text="Close" cls="btn_minimal"/>
+			<Btn text="Close" cls="btn_minimal" @act="toTasks"/>
 		</div>
 	</div>
 </template>
@@ -23,6 +23,11 @@ export default {
 	components:{
 		Title,
 		Btn
+	},
+	methods: {
+		toTasks(){
+			this.$router.back();
+		}
 	}
 }
 

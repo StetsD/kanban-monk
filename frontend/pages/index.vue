@@ -88,7 +88,6 @@ export default {
 	},
 	methods: {
 		tglForm(){
-			console.log('lalalalal')
 			this.vSignIn = !this.vSignIn;
 			this.vSignUp = !this.vSignUp;
 		}

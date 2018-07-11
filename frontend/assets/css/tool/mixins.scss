@@ -1,3 +1,12 @@
+@mixin visy ($cls) {
+	visibility: hidden;
+	@include opacity(0);
+	#{$cls}{
+		visibility: visible;
+		@include opacity(1);
+	}
+}
+
 @mixin text-shadow ($string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
 	text-shadow: $string;
 }

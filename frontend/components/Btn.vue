@@ -29,6 +29,7 @@
 		background: $w;
 		font-weight: 300;
 
+			// types
 		&.btn_act{
 			background: linear-gradient(33.61deg, $action -25.81%, $action_g 237.92%);
 			box-shadow: 0px 3px 7px rgba(0, 201, 255, 0.21);
