@@ -32,11 +32,13 @@ module.exports = {
   },
   build: {
 	  vendor: [
-	  	'hammerjs'
+	  	'hammerjs',
+		'autosize'
 	  ],
 	  plugins: [
 		  new webpack.ProvidePlugin({
-			  Hammerjs: 'hammerjs'
+			  Hammerjs: 'hammerjs',
+			  autosize: 'autosize'
 		  })
 	  ],
     extend(config, {
