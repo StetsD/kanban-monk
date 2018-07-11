@@ -1,5 +1,5 @@
 <template>
-	<div ref="taskAdderWrapper" :class="['task-adder__wrapper', isActive ? 'active' : '']">
+	<div @keyup.esc="closePanel" ref="taskAdderWrapper" :class="['task-adder__wrapper', isActive ? 'active' : '']">
 		<input
 			ref="taskAdderPlug"
 			type="text"
@@ -83,15 +83,22 @@
 				this.isActive = false;
 				this.$refs.taskAdderPlug.blur();
 				this.clearTaskText();
+				this.hideAddTools();
 			},
 			checkTaskTitle(){
 				if(this.$refs.taskAdderInput.value.length){
-					this.$refs.taskAdderBtnAdd.$el.classList.add('active');
-					this.$refs.taskAdderInputDesc.classList.add('active');
+					this.showAddTools();
 				}else{
-					this.$refs.taskAdderBtnAdd.$el.classList.remove('active');
-					this.$refs.taskAdderInputDesc.classList.remove('active');
+					this.hideAddTools();
 				}
+			},
+			showAddTools(){
+				this.$refs.taskAdderBtnAdd.$el.classList.add('active');
+				this.$refs.taskAdderInputDesc.classList.add('active');
+			},
+			hideAddTools(){
+				this.$refs.taskAdderBtnAdd.$el.classList.remove('active');
+				this.$refs.taskAdderInputDesc.classList.remove('active');
 			},
 			clearTaskText(){
 				this.$refs.taskAdderInputDesc.value = '';
@@ -106,7 +113,7 @@
 	@import '../assets/css/tool/mixins';
 
 		// mix
-	.task-adder-input{
+	@mixin taskAdderInput(){
 		border: none;
 		font-size: 18px;
 		font-weight: 300;
@@ -143,7 +150,7 @@
 	}
 
 	.task-adder__btn-plug{
-		@extend .task-adder-input;
+		@include taskAdderInput();
 		background-color: $w;
 		bottom: 0;
 		position: fixed;
@@ -166,7 +173,7 @@
 	}
 
 	.task-adder__input{
-		@extend .task-adder-input;
+		@include taskAdderInput();
 		color: $taskText;
 		font-size: 36px;
 	    height: 43px;
@@ -185,7 +192,7 @@
 	}
 
 	.task-adder__input-desc{
-		@extend .task-adder-input;
+		@include taskAdderInput();
 	    margin: 31px 0 0 0;
 		height: 22px;
 		@include visy('&.active');

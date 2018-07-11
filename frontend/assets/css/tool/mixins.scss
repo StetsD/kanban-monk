@@ -1,3 +1,4 @@
+// Style mixins
 @mixin visy ($cls) {
 	visibility: hidden;
 	@include opacity(0);
@@ -5,6 +6,15 @@
 		visibility: visible;
 		@include opacity(1);
 	}
+}
+
+@mixin maxCen(){
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
 }
 
 @mixin text-shadow ($string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
