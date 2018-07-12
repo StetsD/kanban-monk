@@ -2,7 +2,7 @@
 	<div class="task-page">
 		<Title :msg="title" cls="title_task-page"/>
 		<div class="task-page__date">{{time.created_at}}</div>
-		<div class="task-page__desc">
+		<div v-if="description" class="task-page__desc">
 			{{description}}
 		</div>
 		<div class="task-page__ctrl">
