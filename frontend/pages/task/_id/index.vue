@@ -1,19 +1,26 @@
 <template lang="html">
 	<div class="task-page">
 		<Title :msg="title" cls="title_task-page"/>
-		<div class="task-page__date">{{time.created_at}}</div>
+		<div class="task-page__date">created at {{time.created_at}}</div>
+		<div v-if="state === 'done'" class="task-page__date">completed at {{time.done}}</div>
 		<div v-if="description" class="task-page__desc">
 			{{description}}
 		</div>
 		<div class="task-page__ctrl">
-			<Btn text="Done" cls="btn_std"/>
-			<Btn text="Start" cls="btn_act"/>
+			<Btn v-if="state !== 'done'" text="Done" cls="btn_std" @act="rebaseTaskDone"/>
+			<Btn
+				:text="state === 'new' ? 'Start' :
+				state === 'running' ? 'Stop' :
+				state === 'stopped' ? 'Restart' :
+				state === 'done' ? 'Start again' : ''"
+				cls="btn_act"/>
 			<Btn text="Close" cls="btn_minimal" @act="toTasks"/>
 		</div>
 	</div>
 </template>
 
-<script >
+
+<script>
 import Title from '~/components/Title';
 import Btn from '~/components/Btn';
 
@@ -30,12 +37,13 @@ export default {
 	beforeDestroy(){
 		this.$store.commit('tasks/rmActiveTask');
 	},
-	destroyed(){
-		console.log('dest', this)
-	},
 	methods: {
 		toTasks(){
 			this.$router.back();
+		},
+		rebaseTaskDone(){
+			this.$store.dispatch('tasks/rebaseTaskDone', this.id);
+			this.toTasks();
 		}
 	}
 }

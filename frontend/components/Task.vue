@@ -14,16 +14,16 @@
 
 						<div v-if="state === 'new'" class="task-list__tool-new">
 							<div class="task-list__tool-stat">
-								delete task
+								start task
 							</div>
 							<div class="task-list__tool-stat">
-								00:00
+								25:00
 							</div>
 						</div>
 
 						<div v-if="state === 'running'" class="task-list__tool-running">
 							<div class="task-list__tool-stat">
-								13:22
+								25:00
 							</div>
 							<div class="task-list__tool-stat">
 								stop task
@@ -32,10 +32,10 @@
 
 						<div v-if="state === 'stopped'" class="task-list__tool-stopped">
 							<div class="task-list__tool-stat">
-								time to rest
+								restart task
 							</div>
 							<div class="task-list__tool-stat">
-								4:59
+								25:00
 							</div>
 						</div>
 
@@ -47,7 +47,6 @@
 								task done
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -72,7 +71,7 @@
 
 			this.$refs.task.addEventListener('click', e => {
 				this.$store.commit('tasks/chActiveTask', this.$attrs.task);
-				this.$router.push(`${this.$route.path}/1`);
+				this.$router.push(`${this.$route.path}/${this.id}`);
 			}, false);
 		}
 	}
@@ -179,6 +178,13 @@
 		position: relative;
 			//state
 		&:nth-child(1){
+			.new &{
+				line-height: 15px;
+				font-size: 18px;
+				width: 35px;
+				top: 3px;
+				margin: 0 20px 0 0;
+			}
 			.running &{
 				font-size: 36px;
 				font-family: Roboto Condensed;
@@ -211,6 +217,11 @@
 			}
 		}
 		&:nth-child(2){
+			.new &{
+				font-size: 36px;
+				font-family: Roboto Condensed;
+				top: 3px;
+			}
 			.running &{
 				line-height: 15px;
 				font-size: 18px;
@@ -246,6 +257,4 @@
 		display: flex;
 		align-items: center;
 	}
-
-
 </style>

@@ -15,17 +15,20 @@
 						cls="btn_minimal task-adder__btn-close"
 						@act="closePanel"/>
 					<textarea
+						v-model="taskTitle"
 						ref="taskAdderInput"
 						class="task-adder__input"
 						placeholder="Add new task here..."
 						@input="checkTaskTitle">
 					</textarea>
 					<textarea
+						v-model="taskDescription"
 						ref="taskAdderInputDesc"
 						class="task-adder__input-desc"
 						placeholder="Add description for the task here...">
 					</textarea>
 					<Btn
+						@act="taskAdd"
 						ref="taskAdderBtnAdd"
 						text="Add Task"
 						cls="btn_act task-adder__btn-add"/>
@@ -42,6 +45,13 @@
 	export default{
 		components: {
 			Btn
+		},
+		data(){
+			return {
+				isActive: false,
+				taskTitle: '',
+				taskDescription: ''
+			}
 		},
 		mounted(){
 			let taskAdderSwipe = new Hammerjs(this.$refs.taskAdder);
@@ -65,12 +75,8 @@
 			autosize(this.$refs.taskAdderInput);
 			autosize(this.$refs.taskAdderInputDesc);
 		},
-		data(){
-			return {
-				isActive: false
-			}
-		},
 		methods: {
+			// UI
 			openPanel(){
 				this.isActive = true;
 				this.$refs.taskAdderPlug.blur();
@@ -103,6 +109,13 @@
 			clearTaskText(){
 				this.$refs.taskAdderInputDesc.value = '';
 				this.$refs.taskAdderInput.value = '';
+			},
+			// DATA
+			taskAdd(){
+				let {taskTitle, taskDescription} = this;
+				taskTitle && taskTitle.length &&
+				this.$emit('taskAdd', {title: taskTitle, description: taskDescription});
+				this.closePanel();
 			}
 		}
 	}

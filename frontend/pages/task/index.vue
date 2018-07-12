@@ -2,7 +2,7 @@
 	<div class="">
 		<Menu/>
 		<TaskList :tasks="task"/>
-		<TaskAdder/>
+		<TaskAdder @taskAdd="taskAdd"/>
 	</div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
 	data(){
 		return {
 			task: this.$store.getters['tasks/getTasks']
+		}
+	},
+	methods: {
+		taskAdd(task){
+			this.$store.commit('tasks/addTask', task);
 		}
 	}
 }

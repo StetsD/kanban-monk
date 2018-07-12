@@ -1,5 +1,3 @@
-var timeout;
-
 // STATES
 // new(start:delete) /
 // running(stop:done:delete) /
@@ -20,30 +18,43 @@ export const state = () => ({
 				done: ''
 			},
 			state: 'stopped',
-			monks: '4/5'
+			monks: '3 & 3/4 done'
 		}
 	],
 	done: [
-		{
-			id: 3,
-			title: 'Steel Arny',
-			description: '1.To Eat green berets\n2.Push up 20 times\n3.Smoke a сigar',
-			time: {
-				created_at: '03.02.2018',
-				done: '05.02.2018'
-			},
-			state: 'done',
-			monks: '5/5'
-		}
+
 	]
 });
 
 export const mutations = {
-	chTasks(state, obj){
-		// state.tasks =
+	addTask(state, task){
+		let date = new Date();
+		let newTask = {
+			...task,
+			id: Math.ceil((Math.random().toFixed(Math.random().toFixed(1) * 10) * 1000)),
+			time: {
+				created_at: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+				done: ''
+			},
+			state: 'new',
+			monks: '0 & 0/0 done'
+		}
+		state.tasks.unshift(newTask);
 	},
-	chActiveTask(state, obj){
-		state.activeTask = obj;
+	addTaskDone(state, task){
+		state.done.unshift(task);
+	},
+	addTaskToEnd(state, task){
+		state.tasks.push(task);
+	},
+	chActiveTask(state, task){
+		state.activeTask = task;
+	},
+	rmTaskById(state, id){
+
+	},
+	rmTaskByIndex(state, i){
+		state.tasks.splice(i, 1);
 	},
 	rmActiveTask(state){
 		state.activeTask = {};
@@ -51,12 +62,30 @@ export const mutations = {
 }
 
 export const actions = {
-	callChangeState(ctx, obj){
-		ctx.commit('changeState', obj);
-		clearTimeout(timeout);
-		timeout = setTimeout(()=>{
-			//async
-		}, 3000);
+	rebaseTaskDone(ctx, id){
+		let {tasks} = ctx.state;
+
+		for(let i = 0; i < tasks.length; i++){
+			if(tasks[i].id === id){
+				let date = new Date();
+				let {created_at} = tasks[i].time;
+				let newTask = {
+					...tasks[i],
+					time: {
+						created_at,
+						done: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+					},
+					state: 'done',
+					monks: '4 & 4/4 done'
+				}
+
+				ctx.commit('addTaskDone', newTask);
+				ctx.commit('rmTaskByIndex', i);
+				ctx.commit('addTaskToEnd', newTask)
+
+				break;
+			}
+		}
 	}
 }
 
