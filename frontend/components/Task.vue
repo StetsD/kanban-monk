@@ -1,10 +1,10 @@
 <template>
-	<div ref="task" class="task-list__item running">
+	<div ref="task" :class="['task-list__item', state]">
 		<div class="task-list__item-inner">
 			<div class="task-list__essence">
 				<div class="task-list__title">
 					{{title}}<br/>
-					<span class="task-list__status">3 & 3/4 done</span>
+					<span class="task-list__status">{{monks}}</span>
 				</div>
 				<div class="task-list__action">{{action}}</div>
 			</div>
@@ -12,7 +12,16 @@
 				<div class="task-list__tool">
 					<div class="task-list__tool-inner">
 
-						<div class="task-list__tool-running">
+						<div v-if="state === 'new'" class="task-list__tool-new">
+							<div class="task-list__tool-stat">
+								delete task
+							</div>
+							<div class="task-list__tool-stat">
+								00:00
+							</div>
+						</div>
+
+						<div v-if="state === 'running'" class="task-list__tool-running">
 							<div class="task-list__tool-stat">
 								13:22
 							</div>
@@ -21,7 +30,7 @@
 							</div>
 						</div>
 
-						<div class="task-list__tool-resting">
+						<div v-if="state === 'stopped'" class="task-list__tool-stopped">
 							<div class="task-list__tool-stat">
 								time to rest
 							</div>
@@ -30,7 +39,7 @@
 							</div>
 						</div>
 
-						<div class="task-list__tool-ending">
+						<div v-if="state === 'done'" class="task-list__tool-done">
 							<div class="task-list__tool-stat">
 								start again
 							</div>
@@ -49,7 +58,7 @@
 
 <script>
 	export default{
-		props: ['title', 'action'],
+		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks'],
 		mounted(){
 			let swipeTask = new Hammerjs(this.$refs.task);
 
@@ -62,6 +71,7 @@
 			});
 
 			this.$refs.task.addEventListener('click', e => {
+				this.$store.commit('tasks/chActiveTask', this.$attrs.task);
 				this.$router.push(`${this.$route.path}/1`);
 			}, false);
 		}
@@ -71,11 +81,6 @@
 <style lang="scss">
 	@import '../assets/css/vars/colors';
 	@import '../assets/css/tool/mixins';
-
-	//TASK STATES
-	// - running
-	// - resting
-	// - ending
 
 	.task-list__item{
 		position: relative;
@@ -180,14 +185,14 @@
 				top: 3px;
 			    margin: 0 20px 0 0;
 			}
-			.resting & {
+			.stopped & {
 				line-height: 15px;
 				font-size: 18px;
 				width: 55px;
 				top: 2px;
 			    margin: 0 15px 0 0px;
 			}
-			.ending & {
+			.done & {
 				line-height: 15px;
 				font-size: 18px;
 				width: 55px;
@@ -212,12 +217,12 @@
 				width: 35px;
 				top: 3px;
 			}
-			.resting &{
+			.stopped &{
 				font-size: 36px;
 				font-family: Roboto Condensed;
 				top: 3px;
 			}
-			.ending &{
+			.done &{
 				line-height: 15px;
 				font-size: 18px;
 				width: 55px;
@@ -227,15 +232,17 @@
 		}
 	}
 
+	.task-list__tool-new,
 	.task-list__tool-running,
-	.task-list__tool-resting,
-	.task-list__tool-ending{
+	.task-list__tool-stopped,
+	.task-list__tool-done{
 		display: none;
 	}
 		//state
+	.task-list__item.new .task-list__tool-new,
 	.task-list__item.running .task-list__tool-running,
-	.task-list__item.resting .task-list__tool-resting,
-	.task-list__item.ending .task-list__tool-ending{
+	.task-list__item.stopped .task-list__tool-stopped,
+	.task-list__item.done .task-list__tool-done{
 		display: flex;
 		align-items: center;
 	}

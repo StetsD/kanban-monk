@@ -1,11 +1,9 @@
 <template lang="html">
 	<div class="task-page">
-		<Title msg="How to be monk?" cls="title_task-page"/>
-		<div class="task-page__date">created, today</div>
+		<Title :msg="title" cls="title_task-page"/>
+		<div class="task-page__date">{{time.created_at}}</div>
 		<div class="task-page__desc">
-			What is the shortest working solution, to make tslint work with all <br/><br/>
-			1. ts files in one specific directory of the project, without specifying every subdirectory manually.
-			2. By all .ts files, I really mean ...
+			{{description}}
 		</div>
 		<div class="task-page__ctrl">
 			<Btn text="Done" cls="btn_std"/>
@@ -23,6 +21,17 @@ export default {
 	components:{
 		Title,
 		Btn
+	},
+	data(){
+		return {
+			...this.$store.getters['tasks/getActiveTask']
+		}
+	},
+	beforeDestroy(){
+		this.$store.commit('tasks/rmActiveTask');
+	},
+	destroyed(){
+		console.log('dest', this)
 	},
 	methods: {
 		toTasks(){

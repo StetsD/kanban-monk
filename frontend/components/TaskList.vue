@@ -3,8 +3,14 @@
 		<Task
 			v-for="(task, i) in tasks"
 			:key="i"
+			:task="task"
 			:title="task.title"
 			:action="task.state"
+			:id="task.id"
+			:description="task.description"
+			:state="task.state"
+			:time="task.time"
+			:monks="task.monks"
 		/>
 	</div>
 </template>
