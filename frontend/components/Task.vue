@@ -4,11 +4,14 @@
 			<div class="task-list__essence">
 				<div class="task-list__title">
 					{{title}}<br/>
-					<span class="task-list__status">{{monks}}</span>
+
+					<span v-if="state !== 'done'" class="task-list__status">{{monks}}</span>
+					<span v-else class="task-list__status">completed, {{time.done}}</span>
+
 				</div>
 				<div class="task-list__action">{{action}}</div>
 			</div>
-			<div class="task-list__tool-wrapper">
+			<div v-if="taskToolActive" class="task-list__tool-wrapper" >
 				<div class="task-list__tool">
 					<div class="task-list__tool-inner">
 
@@ -58,16 +61,23 @@
 <script>
 	export default{
 		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks'],
+		data(){
+			return {
+				taskToolActive: this.$route.name === 'task' ? true : false
+			}
+		},
 		mounted(){
 			let swipeTask = new Hammerjs(this.$refs.task);
 
-			swipeTask.on('swipeleft', function(e){
-				e.target.closest('.task-list__item').classList.add('swiped');
-			});
+			if(this.taskToolActive){
+				swipeTask.on('swipeleft', function(e){
+					e.target.closest('.task-list__item').classList.add('swiped');
+				});
 
-			swipeTask.on('swiperight', function(e){
-				e.target.closest('.task-list__item').classList.remove('swiped');
-			});
+				swipeTask.on('swiperight', function(e){
+					e.target.closest('.task-list__item').classList.remove('swiped');
+				});
+			}
 
 			this.$refs.task.addEventListener('click', e => {
 				this.$store.commit('tasks/chActiveTask', this.$attrs.task);

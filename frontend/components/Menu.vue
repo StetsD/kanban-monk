@@ -1,14 +1,24 @@
 <template lang="html">
 	<div :class="['menu']">
-		<nuxt-link to="/task" data-route="task" class="menu__link">Tasks</nuxt-link>
-		<nuxt-link to="/done" data-route="done" class="menu__link">Done</nuxt-link>
+		<div class="menu__links">
+			<nuxt-link to="/task" :class="['menu__link', activeMenuItem === 'task' ? 'active' : '']">Tasks</nuxt-link>
+			<nuxt-link v-if="hasDone" to="/done" :class="['menu__link', activeMenuItem === 'done' ? 'active' : '']">Done</nuxt-link>
+		</div>
+		<div class="menu__info">
+			<div v-if="activeMenuItem == 'task'" class="menu__info-item">Status</div>
+			<div v-else-if="activeMenuItem == 'done'" class="menu__info-item">Efficiency</div>
+		</div>
+
 	</div>
 </template>
 
 <script>
 	export default {
-		mounted(){
-			document.querySelector(`[data-route=${this.$route.name}]`).classList.add('active');
+		data(){
+			return{
+				activeMenuItem: this.$route.name,
+				hasDone: !!this.$store.getters['tasks/getTasksDone'].length
+			}
 		}
 	}
 </script>
@@ -19,7 +29,11 @@
 	.menu{
 		display: flex;
 	    align-items: baseline;
-	    margin: 55px 0 0 32px;
+		justify-content: space-between;
+		margin: 55px 0 0 0;
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding: 0 32px;
 	}
 
 	.menu__link{
@@ -33,5 +47,10 @@
 		&.active{
 			font-size: 36px;
 		}
+	}
+
+	.menu__info-item{
+		color: $menuInfoItem;
+		font-size: 18px;
 	}
 </style>

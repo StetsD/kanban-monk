@@ -81,7 +81,8 @@ export const actions = {
 
 				ctx.commit('addTaskDone', newTask);
 				ctx.commit('rmTaskByIndex', i);
-				ctx.commit('addTaskToEnd', newTask)
+				// нужно осознать
+				// ctx.commit('addTaskToEnd', newTask);
 
 				break;
 			}
