@@ -107,8 +107,8 @@
 				this.$refs.taskAdderInputDesc.classList.remove('active');
 			},
 			clearTaskText(){
-				this.$refs.taskAdderInputDesc.value = '';
-				this.$refs.taskAdderInput.value = '';
+				this.taskTitle = '';
+				this.taskDescription = '';
 			},
 			// DATA
 			taskAdd(){

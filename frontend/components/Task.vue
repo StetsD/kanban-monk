@@ -16,7 +16,7 @@
 					<div class="task-list__tool-inner">
 
 						<div v-if="state === 'new'" class="task-list__tool-new">
-							<div class="task-list__tool-stat">
+							<div class="task-list__tool-stat" @click="taskStart">
 								start task
 							</div>
 							<div class="task-list__tool-stat">
@@ -28,13 +28,13 @@
 							<div class="task-list__tool-stat">
 								25:00
 							</div>
-							<div class="task-list__tool-stat">
+							<div class="task-list__tool-stat" @click="taskStop">
 								stop task
 							</div>
 						</div>
 
 						<div v-if="state === 'stopped'" class="task-list__tool-stopped">
-							<div class="task-list__tool-stat">
+							<div class="task-list__tool-stat" @click="taskRestart">
 								restart task
 							</div>
 							<div class="task-list__tool-stat">
@@ -43,7 +43,7 @@
 						</div>
 
 						<div v-if="state === 'done'" class="task-list__tool-done">
-							<div class="task-list__tool-stat">
+							<div class="task-list__tool-stat" @click="taskStartAgain">
 								start again
 							</div>
 							<div class="task-list__tool-stat">
@@ -66,11 +66,33 @@
 				taskToolActive: this.$route.name === 'task' ? true : false
 			}
 		},
+		methods: {
+			taskStart(e){
+				e.stopPropagation();
+				console.log('check');
+			},
+			taskStop(e){
+				e.stopPropagation();
+				console.log('check');
+			},
+			taskRestart(e){
+				e.stopPropagation();
+				console.log('check');
+			},
+			taskStartAgain(e){
+				e.stopPropagation();
+				console.log('check');
+			}
+		},
 		mounted(){
 			let swipeTask = new Hammerjs(this.$refs.task);
 
 			if(this.taskToolActive){
 				swipeTask.on('swipeleft', function(e){
+					let ls = document.querySelectorAll('.task-list__item');
+					for(let i = 0; i < ls.length; i++){
+						ls[i].classList.remove('swiped');
+					}
 					e.target.closest('.task-list__item').classList.add('swiped');
 				});
 

@@ -16,9 +16,13 @@
 	export default {
 		data(){
 			return{
+				timer: this.$store.getters['timerGlobal/get'],
 				activeMenuItem: this.$route.name,
 				hasDone: !!this.$store.getters['tasks/getTasksDone'].length
 			}
+		},
+		mounted(){
+			// this.$store.commit('timerGlobal/start');
 		}
 	}
 </script>
