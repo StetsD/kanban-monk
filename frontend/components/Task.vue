@@ -69,18 +69,22 @@
 		methods: {
 			taskStart(e){
 				e.stopPropagation();
+				
 				console.log('check');
 			},
 			taskStop(e){
 				e.stopPropagation();
+				
 				console.log('check');
 			},
 			taskRestart(e){
 				e.stopPropagation();
+				
 				console.log('check');
 			},
 			taskStartAgain(e){
 				e.stopPropagation();
+				
 				console.log('check');
 			}
 		},

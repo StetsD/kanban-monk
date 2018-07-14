@@ -1,5 +1,7 @@
 const Timer = require('../assets/modules/Timer.class.js').default;
 
+// state outside
+
 export const state = () => ({
 	timer: new Timer()
 });

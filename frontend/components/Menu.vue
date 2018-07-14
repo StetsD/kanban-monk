@@ -20,9 +20,6 @@
 				activeMenuItem: this.$route.name,
 				hasDone: !!this.$store.getters['tasks/getTasksDone'].length
 			}
-		},
-		mounted(){
-			// this.$store.commit('timerGlobal/start');
 		}
 	}
 </script>
