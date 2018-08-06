@@ -69,22 +69,24 @@
 		methods: {
 			taskStart(e){
 				e.stopPropagation();
-				
-				console.log('check');
+
+				// console.log('check');
+				// console.log(this.$store.commit('timerGlobal/start'));
+				console.log(this.$store.dispatch('timerGlobal/start'));
 			},
 			taskStop(e){
 				e.stopPropagation();
-				
+
 				console.log('check');
 			},
 			taskRestart(e){
 				e.stopPropagation();
-				
+
 				console.log('check');
 			},
 			taskStartAgain(e){
 				e.stopPropagation();
-				
+
 				console.log('check');
 			}
 		},

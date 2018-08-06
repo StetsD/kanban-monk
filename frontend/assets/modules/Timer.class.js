@@ -9,10 +9,11 @@ export default class Timer extends EE {
 		this.time = 0;
 	}
 
-	start(){
+	start(cb, type){
 		let that = this;
 		setTimeout(function run(){
 			that.time++;
+			cb(type, that.time);
 			setTimeout(run, 1000);
 		}, 1000);
 	}
