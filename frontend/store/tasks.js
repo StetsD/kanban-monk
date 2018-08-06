@@ -58,6 +58,15 @@ export const mutations = {
 	},
 	rmActiveTask(state){
 		state.activeTask = {};
+	},
+	chTaskStatus({tasks}, {id, state}){
+		tasks.forEach(elem => {
+			console.log(state, id);
+			if(id == elem.id){
+				elem.state = state;
+				return;
+			}
+		});
 	}
 }
 

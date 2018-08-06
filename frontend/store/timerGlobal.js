@@ -8,7 +8,7 @@ export const state = () => ({
 
 export const mutations = {
 	tick(state, time){
-		console.log(time);
+		state.time = time;
 	}
 }
 
@@ -19,7 +19,7 @@ export const actions = {
 }
 
 export const getters = {
-	get(state){
-		return timer.time;
+	getParseTime(state){
+		return Timer.parseTime(state.time);
 	}
 }

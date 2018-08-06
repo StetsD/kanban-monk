@@ -20,7 +20,8 @@
 								start task
 							</div>
 							<div class="task-list__tool-stat">
-								25:00
+								<!-- 25:00 -->
+								{{this.$store.getters['timerGlobal/getParseTime']}}
 							</div>
 						</div>
 
@@ -70,9 +71,10 @@
 			taskStart(e){
 				e.stopPropagation();
 
-				// console.log('check');
-				// console.log(this.$store.commit('timerGlobal/start'));
-				console.log(this.$store.dispatch('timerGlobal/start'));
+				console.log(this.id)
+
+				this.$store.dispatch('timerGlobal/start');
+				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
 			},
 			taskStop(e){
 				e.stopPropagation();
