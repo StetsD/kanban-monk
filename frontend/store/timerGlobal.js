@@ -9,12 +9,18 @@ export const state = () => ({
 export const mutations = {
 	tick(state, time){
 		state.time = time;
+	},
+	stop(state, time){
+		state.time = time;
 	}
 }
 
 export const actions = {
 	start({state, commit}, id){
 		timer.start(commit, 'tick');
+	},
+	stop({state, commit}, id){
+		timer.stop(commit, 'stop');
 	}
 }
 

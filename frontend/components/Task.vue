@@ -20,14 +20,13 @@
 								start task
 							</div>
 							<div class="task-list__tool-stat">
-								<!-- 25:00 -->
 								{{this.$store.getters['timerGlobal/getParseTime']}}
 							</div>
 						</div>
 
 						<div v-if="state === 'running'" class="task-list__tool-running">
 							<div class="task-list__tool-stat">
-								25:00
+								{{this.$store.getters['timerGlobal/getParseTime']}}
 							</div>
 							<div class="task-list__tool-stat" @click="taskStop">
 								stop task
@@ -39,7 +38,7 @@
 								restart task
 							</div>
 							<div class="task-list__tool-stat">
-								25:00
+								{{this.$store.getters['timerGlobal/getParseTime']}}
 							</div>
 						</div>
 
@@ -71,25 +70,25 @@
 			taskStart(e){
 				e.stopPropagation();
 
-				console.log(this.id)
-
 				this.$store.dispatch('timerGlobal/start');
 				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
 			},
 			taskStop(e){
 				e.stopPropagation();
 
-				console.log('check');
+				this.$store.dispatch('timerGlobal/stop');
+				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'stopped'});
 			},
 			taskRestart(e){
 				e.stopPropagation();
 
-				console.log('check');
+				this.$store.dispatch('timerGlobal/start');
+				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
 			},
 			taskStartAgain(e){
 				e.stopPropagation();
 
-				console.log('check');
+				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
 			}
 		},
 		mounted(){

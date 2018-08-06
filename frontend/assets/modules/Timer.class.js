@@ -8,23 +8,26 @@ export default class Timer extends EE {
 		super();
 
 		this.time = 0;
+		this.isActive = false;
 	}
 
 	start(cb, type){
 		let that = this;
-		setTimeout(function run(){
+		this.isActive = true;
+		this.ticker = setTimeout(function run(){
+			if(!that.isActive){
+				return;
+			}
 			that.time++;
 			cb(type, that.time);
-			setTimeout(run, 1000);
+			this.ticker = setTimeout(run, 1000);
 		}, 1000);
 	}
 
-	stop(){
-
-	}
-
-	pause(){
-
+	stop(cb, type){
+		this.isActive = false;
+		this.time = 0;
+		cb(type, this.time);
 	}
 
 	static parseTime(t){
