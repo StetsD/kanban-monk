@@ -60,7 +60,7 @@
 
 <script>
 	export default{
-		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks'],
+		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks', 'task'],
 		data(){
 			return {
 				taskToolActive: this.$route.name === 'task' ? true : false
@@ -72,6 +72,7 @@
 
 				this.$store.dispatch('timerGlobal/start');
 				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
+				this.$store.commit('tasks/chRunningTask', this.task);
 			},
 			taskStop(e){
 				e.stopPropagation();
@@ -109,7 +110,7 @@
 			}
 
 			this.$refs.task.addEventListener('click', e => {
-				this.$store.commit('tasks/chActiveTask', this.$attrs.task);
+				this.$store.commit('tasks/chActiveTask', this.task);
 				this.$router.push(`${this.$route.path}/${this.id}`);
 			}, false);
 		}

@@ -2,7 +2,7 @@
 	<div :class="['menu']">
 		<div class="menu__links">
 			<nuxt-link to="/task" :class="['menu__link', activeMenuItem === 'task' ? 'active' : '']">Tasks</nuxt-link>
-			<nuxt-link v-if="hasDone" to="/done" :class="['menu__link', activeMenuItem === 'done' ? 'active' : '']">Done</nuxt-link>
+			<nuxt-link v-if="!!this.$store.getters['tasks/getTasksDone'].length" to="/done" :class="['menu__link', activeMenuItem === 'done' ? 'active' : '']">Done</nuxt-link>
 		</div>
 		<div class="menu__info">
 			<div v-if="activeMenuItem == 'task'" class="menu__info-item">Status</div>
@@ -17,8 +17,7 @@
 		data(){
 			return{
 				timer: this.$store.getters['timerGlobal/get'],
-				activeMenuItem: this.$route.name,
-				hasDone: !!this.$store.getters['tasks/getTasksDone'].length
+				activeMenuItem: this.$route.name
 			}
 		}
 	}

@@ -5,6 +5,9 @@
 // done(startAgain:delete)
 
 export const state = () => ({
+	//running task
+	runningTask: {},
+	//showed by click
 	activeTask: {},
 	tasks: [
 		{
@@ -18,7 +21,7 @@ export const state = () => ({
 				done: ''
 			},
 			state: 'stopped',
-			monks: '3 & 3/4 done'
+			monks: 1
 		}
 	],
 	done: [
@@ -37,9 +40,22 @@ export const mutations = {
 				done: ''
 			},
 			state: 'new',
-			monks: '0 & 0/0 done'
+			monks: 0
 		}
 		state.tasks.unshift(newTask);
+	},
+	chTask(state, {task, props}){
+		let {tasks} = state;
+		let {id} = task;
+
+		for(let i = 0; i < tasks.length; i++){
+			if(tasks[i].id === id){
+				for(let j = 0; j < props.length; j++){
+					state.tasks[i][props[j]] = task[props[j]];
+				}
+				return;
+			}
+		}
 	},
 	addTaskDone(state, task){
 		state.done.unshift(task);
@@ -66,6 +82,12 @@ export const mutations = {
 				return;
 			}
 		});
+	},
+	chRunningTask(state, task){
+		state.runningTask = task;
+	},
+	rmRunningTask(state){
+		state.runningTask = {};
 	}
 }
 
@@ -82,9 +104,7 @@ export const actions = {
 					time: {
 						created_at,
 						done: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-					},
-					state: 'done',
-					monks: '4 & 4/4 done'
+					}
 				}
 
 				ctx.commit('addTaskDone', newTask);
@@ -109,5 +129,10 @@ export const getters = {
 
 	getActiveTask(state){
 		return state.activeTask;
+	},
+
+	getRunningTask(state){
+		console.log(state.runningTask)
+		return state.runningTask;
 	}
 }

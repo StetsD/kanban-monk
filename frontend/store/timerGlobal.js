@@ -1,6 +1,33 @@
 const Timer = require('../assets/modules/Timer.class.js').default;
 const timer = new Timer();
 
+let that = this;
+
+timer.on('stop', () => {
+
+});
+
+timer.on('monk', () => {
+	let {$nuxt} = window;
+	let runningTask = $nuxt.$store.getters['tasks/getRunningTask'];
+	$nuxt.$store.commit('timerGlobal/stop', timer.time);
+
+	if(runningTask.monks < 4){
+		$nuxt.$store.commit('tasks/chTask', {
+			task: {...runningTask, monks: runningTask.monks + 1, state: 'stopped'},
+			props: ['monks', 'state']
+		});
+	}
+	
+	if(runningTask.monks >= 4){
+		$nuxt.$store.commit('tasks/chTask', {
+			task: {...runningTask, state: 'done'},
+			props: ['state']
+		});
+		$nuxt.$store.dispatch('tasks/rebaseTaskDone', runningTask.id);
+	}
+
+});
 
 export const state = () => ({
 	time: 0

@@ -1,7 +1,8 @@
 let EE = require('events').EventEmitter;
 
 let _TIMER = null;
-const TIME_LIMIT_MIN = 25 * 60;
+// const TIME_LIMIT_MIN = 25 * 60;
+const TIME_LIMIT_MIN = 1;
 
 export default class Timer extends EE {
 	constructor(){
@@ -14,20 +15,36 @@ export default class Timer extends EE {
 	start(cb, type){
 		let that = this;
 		this.isActive = true;
-		this.ticker = setTimeout(function run(){
+
+		that.emit('start');
+
+		setTimeout(function run(){
 			if(!that.isActive){
 				return;
 			}
+
 			that.time++;
-			cb(type, that.time);
-			this.ticker = setTimeout(run, 1000);
+
+			if(that.time >= TIME_LIMIT_MIN){
+				that.stop();
+				that.emit('monk');
+				return;
+			}
+
+			cb && cb(type, that.time);
+
+			that.emit('tick');
+
+			setTimeout(run, 1000);
 		}, 1000);
+
 	}
 
 	stop(cb, type){
 		this.isActive = false;
 		this.time = 0;
-		cb(type, this.time);
+		cb && cb(type, this.time);
+		this.emit('stop');
 	}
 
 	static parseTime(t){
