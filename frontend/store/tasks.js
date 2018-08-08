@@ -82,9 +82,7 @@ export const mutations = {
 		state.activeTask = {};
 	},
 	chRunningTask(state, task){
-		console.log(task)
 		state.runningTask = task;
-		console.log(state.runningTask)
 	},
 	rmRunningTask(state){
 		state.runningTask = {};
@@ -109,8 +107,6 @@ export const actions = {
 
 				ctx.commit('addTaskDone', newTask);
 				ctx.commit('rmTaskByIndex', i);
-				// нужно осознать
-				// ctx.commit('addTaskToEnd', newTask);
 
 				break;
 			}

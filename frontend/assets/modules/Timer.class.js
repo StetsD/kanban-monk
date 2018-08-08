@@ -2,7 +2,7 @@ let EE = require('events').EventEmitter;
 
 let _TIMER = null;
 // const TIME_LIMIT_MIN = 25 * 60;
-const TIME_LIMIT_MIN = 5;
+const TIME_LIMIT_MIN = 10;
 
 export default class Timer extends EE {
 	constructor(){
@@ -18,7 +18,7 @@ export default class Timer extends EE {
 
 		that.emit('start');
 
-		setTimeout(function run(){
+		that.timer = setTimeout(function run(){
 			if(!that.isActive){
 				return;
 			}
@@ -35,12 +35,13 @@ export default class Timer extends EE {
 
 			that.emit('tick');
 
-			setTimeout(run, 1000);
+			that.timer = setTimeout(run, 1000);
 		}, 1000);
 
 	}
 
 	stop(cb, type){
+		clearTimeout(this.timer);
 		this.isActive = false;
 		this.time = 0;
 		cb && cb(type, this.time);

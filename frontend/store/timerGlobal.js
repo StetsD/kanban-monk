@@ -41,7 +41,6 @@ timer.on('monk', () => {
 			},
 			props: ['progress', 'state']
 		});
-		// $nuxt.$store.dispatch('tasks/rebaseTaskDone', runningTask.id);
 	}
 
 	$nuxt.$store.commit('tasks/rmRunningTask');
