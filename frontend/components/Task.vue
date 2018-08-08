@@ -5,7 +5,7 @@
 				<div class="task-list__title">
 					{{title}}<br/>
 
-					<span v-if="state !== 'done'" class="task-list__status">{{lap}}</span>
+					<span v-if="state !== 'done'" class="task-list__status">{{monks ? monks + ' & ' : ''}}{{lap}}\4 done</span>
 					<span v-else class="task-list__status">completed, {{time.done}}</span>
 
 				</div>
@@ -34,7 +34,7 @@
 						</div>
 
 						<div v-if="state === 'stopped'" class="task-list__tool-stopped">
-							<div class="task-list__tool-stat" @click="taskRestart">
+							<div class="task-list__tool-stat" @click="taskStart">
 								restart task
 							</div>
 							<div class="task-list__tool-stat">
@@ -43,7 +43,7 @@
 						</div>
 
 						<div v-if="state === 'done'" class="task-list__tool-done">
-							<div class="task-list__tool-stat" @click="taskStartAgain">
+							<div class="task-list__tool-stat" @click="taskStart">
 								start again
 							</div>
 							<div class="task-list__tool-stat">
@@ -70,26 +70,30 @@
 			taskStart(e){
 				e.stopPropagation();
 
+				this.$store.dispatch('timerGlobal/stop');
+				this.$store.commit('tasks/chTask', {
+					task: {...$nuxt.$store.getters['tasks/getRunningTask'],state: 'stopped'},
+					props: ['state']
+				});
+				$nuxt.$store.commit('tasks/rmRunningTask');
+
+
 				this.$store.dispatch('timerGlobal/start');
-				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
+				this.$store.commit('tasks/chTask', {
+					task: {...this.task,state: 'running'},
+					props: ['state']
+				});
 				this.$store.commit('tasks/chRunningTask', this.task);
 			},
 			taskStop(e){
 				e.stopPropagation();
 
 				this.$store.dispatch('timerGlobal/stop');
-				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'stopped'});
-			},
-			taskRestart(e){
-				e.stopPropagation();
-
-				this.$store.dispatch('timerGlobal/start');
-				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
-			},
-			taskStartAgain(e){
-				e.stopPropagation();
-
-				this.$store.commit('tasks/chTaskStatus', {id: this.id, state: 'running'});
+				this.$store.commit('tasks/chTask', {
+					task: {...this.task,state: 'stopped'},
+					props: ['state']
+				});
+				$nuxt.$store.commit('tasks/rmRunningTask');
 			}
 		},
 		mounted(){

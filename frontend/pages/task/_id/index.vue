@@ -13,7 +13,8 @@
 				state === 'running' ? 'Stop' :
 				state === 'stopped' ? 'Restart' :
 				state === 'done' ? 'Start again' : ''"
-				cls="btn_act"/>
+				cls="btn_act"
+				@act="controll"/>
 			<Btn text="Close" cls="btn_minimal" @act="toTasks"/>
 		</div>
 	</div>
@@ -44,6 +45,24 @@ export default {
 		rebaseTaskDone(){
 			this.$store.dispatch('tasks/rebaseTaskDone', this.id);
 			this.toTasks();
+		},
+		controll(){
+			let {state} = this.$store.getters['tasks/getActiveTask'];
+			if(state === 'new'){
+
+				this.toTasks();
+			}
+			if(state === 'running'){
+
+				this.toTasks();
+			}
+			if(state === 'stopped'){
+
+				this.toTasks();
+			}
+			if(state === 'done'){
+
+			}
 		}
 	}
 }

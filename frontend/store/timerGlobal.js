@@ -3,6 +3,10 @@ const timer = new Timer();
 
 let that = this;
 
+timer.on('start', () => {
+
+});
+
 timer.on('stop', () => {
 
 });
@@ -28,12 +32,19 @@ timer.on('monk', () => {
 
 	if(runningTask.progress.lap >= 4){
 		$nuxt.$store.commit('tasks/chTask', {
-			task: {...runningTask, state: 'done'},
-			props: ['state']
+			task: {
+				...runningTask,
+				progress: {
+					monks: runningTask.progress.monks + 1,
+					lap: 0
+				}
+			},
+			props: ['progress', 'state']
 		});
-		$nuxt.$store.dispatch('tasks/rebaseTaskDone', runningTask.id);
+		// $nuxt.$store.dispatch('tasks/rebaseTaskDone', runningTask.id);
 	}
 
+	$nuxt.$store.commit('tasks/rmRunningTask');
 });
 
 export const state = () => ({

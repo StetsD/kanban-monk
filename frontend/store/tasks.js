@@ -81,16 +81,10 @@ export const mutations = {
 	rmActiveTask(state){
 		state.activeTask = {};
 	},
-	chTaskStatus({tasks}, {id, state}){
-		tasks.forEach(elem => {
-			if(id == elem.id){
-				elem.state = state;
-				return;
-			}
-		});
-	},
 	chRunningTask(state, task){
+		console.log(task)
 		state.runningTask = task;
+		console.log(state.runningTask)
 	},
 	rmRunningTask(state){
 		state.runningTask = {};
@@ -138,7 +132,6 @@ export const getters = {
 	},
 
 	getRunningTask(state){
-		console.log(state.runningTask)
 		return state.runningTask;
 	}
 }

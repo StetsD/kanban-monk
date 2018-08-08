@@ -2,7 +2,7 @@ let EE = require('events').EventEmitter;
 
 let _TIMER = null;
 // const TIME_LIMIT_MIN = 25 * 60;
-const TIME_LIMIT_MIN = 1;
+const TIME_LIMIT_MIN = 5;
 
 export default class Timer extends EE {
 	constructor(){
