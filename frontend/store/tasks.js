@@ -21,7 +21,10 @@ export const state = () => ({
 				done: ''
 			},
 			state: 'stopped',
-			monks: 1
+			progress: {
+				monks: 1,
+				lap: 2
+			}
 		}
 	],
 	done: [
@@ -40,7 +43,10 @@ export const mutations = {
 				done: ''
 			},
 			state: 'new',
-			monks: 0
+			progress: {
+				monks: 0,
+				lap: 0
+			}
 		}
 		state.tasks.unshift(newTask);
 	},

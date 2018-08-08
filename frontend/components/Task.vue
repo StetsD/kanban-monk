@@ -5,7 +5,7 @@
 				<div class="task-list__title">
 					{{title}}<br/>
 
-					<span v-if="state !== 'done'" class="task-list__status">{{monks}}</span>
+					<span v-if="state !== 'done'" class="task-list__status">{{lap}}</span>
 					<span v-else class="task-list__status">completed, {{time.done}}</span>
 
 				</div>
@@ -60,7 +60,7 @@
 
 <script>
 	export default{
-		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks', 'task'],
+		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks', 'lap', 'task'],
 		data(){
 			return {
 				taskToolActive: this.$route.name === 'task' ? true : false

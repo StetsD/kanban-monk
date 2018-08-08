@@ -12,14 +12,21 @@ timer.on('monk', () => {
 	let runningTask = $nuxt.$store.getters['tasks/getRunningTask'];
 	$nuxt.$store.commit('timerGlobal/stop', timer.time);
 
-	if(runningTask.monks < 4){
+	if(runningTask.progress.lap < 4){
 		$nuxt.$store.commit('tasks/chTask', {
-			task: {...runningTask, monks: runningTask.monks + 1, state: 'stopped'},
-			props: ['monks', 'state']
+			task: {
+				...runningTask,
+				progress: {
+					monks: runningTask.progress.monks,
+					lap: runningTask.progress.lap + 1
+				},
+				state: 'stopped'
+			},
+			props: ['progress', 'state']
 		});
 	}
-	
-	if(runningTask.monks >= 4){
+
+	if(runningTask.progress.lap >= 4){
 		$nuxt.$store.commit('tasks/chTask', {
 			task: {...runningTask, state: 'done'},
 			props: ['state']

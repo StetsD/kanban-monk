@@ -10,7 +10,8 @@
 			:description="task.description"
 			:state="task.state"
 			:time="task.time"
-			:monks="task.monks"
+			:monks="task.progress.monks"
+			:lap="task.progress.lap"
 		/>
 	</div>
 </template>
