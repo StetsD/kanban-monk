@@ -72,9 +72,6 @@ export const mutations = {
 	chActiveTask(state, task){
 		state.activeTask = task;
 	},
-	rmTaskById(state, id){
-
-	},
 	rmTaskByIndex(state, i){
 		state.tasks.splice(i, 1);
 	},
@@ -102,7 +99,8 @@ export const actions = {
 					time: {
 						created_at,
 						done: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-					}
+					},
+					state: 'done'
 				}
 
 				ctx.commit('addTaskDone', newTask);
@@ -111,6 +109,30 @@ export const actions = {
 				break;
 			}
 		}
+	},
+	startTask(ctx, task){
+		$nuxt.$store.dispatch('timerGlobal/stop');
+		$nuxt.$store.commit('tasks/chTask', {
+			task: {...$nuxt.$store.getters['tasks/getRunningTask'], state: 'stopped'},
+			props: ['state']
+		});
+		$nuxt.$store.commit('tasks/rmRunningTask');
+
+
+		$nuxt.$store.dispatch('timerGlobal/start');
+		$nuxt.$store.commit('tasks/chTask', {
+			task: {...task, state: 'running'},
+			props: ['state']
+		});
+		$nuxt.$store.commit('tasks/chRunningTask', task);
+	},
+	stopTask(ctx, task){
+		$nuxt.$store.dispatch('timerGlobal/stop');
+		$nuxt.$store.commit('tasks/chTask', {
+			task: {...task, state: 'stopped'},
+			props: ['state']
+		});
+		$nuxt.$store.commit('tasks/rmRunningTask');
 	}
 }
 

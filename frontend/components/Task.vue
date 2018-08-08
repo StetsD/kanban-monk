@@ -38,7 +38,7 @@
 								restart task
 							</div>
 							<div class="task-list__tool-stat">
-								{{this.$store.getters['timerGlobal/getParseTime']}}
+								{{this.id === this.$store.getters['tasks/getRunningTask'].id ? this.$store.getters['timerGlobal/getParseTime'] : '00:00'}}
 							</div>
 						</div>
 
@@ -69,31 +69,11 @@
 		methods: {
 			taskStart(e){
 				e.stopPropagation();
-
-				this.$store.dispatch('timerGlobal/stop');
-				this.$store.commit('tasks/chTask', {
-					task: {...$nuxt.$store.getters['tasks/getRunningTask'],state: 'stopped'},
-					props: ['state']
-				});
-				$nuxt.$store.commit('tasks/rmRunningTask');
-
-
-				this.$store.dispatch('timerGlobal/start');
-				this.$store.commit('tasks/chTask', {
-					task: {...this.task,state: 'running'},
-					props: ['state']
-				});
-				this.$store.commit('tasks/chRunningTask', this.task);
+				this.$store.dispatch('tasks/startTask', this.task);
 			},
 			taskStop(e){
 				e.stopPropagation();
-
-				this.$store.dispatch('timerGlobal/stop');
-				this.$store.commit('tasks/chTask', {
-					task: {...this.task,state: 'stopped'},
-					props: ['state']
-				});
-				$nuxt.$store.commit('tasks/rmRunningTask');
+				this.$store.dispatch('tasks/stopTask', this.task);
 			}
 		},
 		mounted(){

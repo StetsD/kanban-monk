@@ -47,17 +47,18 @@ export default {
 			this.toTasks();
 		},
 		controll(){
-			let {state} = this.$store.getters['tasks/getActiveTask'];
+			let aTask = this.$store.getters['tasks/getActiveTask'],
+				{state} = aTask;
 			if(state === 'new'){
-
+				this.$store.dispatch('tasks/startTask', aTask);
 				this.toTasks();
 			}
 			if(state === 'running'){
-
+				this.$store.dispatch('tasks/stopTask', aTask);
 				this.toTasks();
 			}
 			if(state === 'stopped'){
-
+				this.$store.dispatch('tasks/startTask', aTask);
 				this.toTasks();
 			}
 			if(state === 'done'){
