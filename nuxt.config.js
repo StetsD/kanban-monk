@@ -27,6 +27,9 @@ module.exports = {
 		{href: "https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic", rel: "stylesheet"}
 	]
   },
+  router: {
+	middleware: 'checkDoneTasks'  
+  },
   loading: {
     color: '#3B8070'
   },
