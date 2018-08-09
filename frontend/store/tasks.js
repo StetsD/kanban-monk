@@ -34,7 +34,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-	addTask(state, task){
+	createTask(state, task){
 		let date = new Date();
 		let newTask = {
 			...task,
@@ -74,8 +74,8 @@ export const mutations = {
 	chActiveTask(state, task){
 		state.activeTask = task;
 	},
-	rmTaskByIndex(state, i){
-		state.tasks.splice(i, 1);
+	rmTaskByIndex(state, props){
+		state[props.collection].splice(props.index, 1);
 	},
 	rmActiveTask(state){
 		state.activeTask = {};
@@ -106,7 +106,24 @@ export const actions = {
 				}
 
 				ctx.commit('addTaskDone', newTask);
-				ctx.commit('rmTaskByIndex', i);
+				ctx.commit('rmTaskByIndex', {index: i, collection: 'tasks'});
+
+				break;
+			}
+		}
+	},
+	rebaseTask(ctx, id){
+		let {done} = ctx.state;
+
+		for(let i = 0; i < done.length; i++){
+			if(done[i].id === id){
+				let newTask = {
+					...done[i],
+					state: 'stopped'
+				}
+
+				ctx.commit('addTaskToEnd', newTask);
+				ctx.commit('rmTaskByIndex', {index: i, collection: 'done'});
 
 				break;
 			}

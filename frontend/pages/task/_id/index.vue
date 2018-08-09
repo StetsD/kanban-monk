@@ -51,19 +51,15 @@ export default {
 				{state} = aTask;
 			if(state === 'new'){
 				this.$store.dispatch('tasks/startTask', aTask);
-				this.toTasks();
 			}
 			if(state === 'running'){
 				this.$store.dispatch('tasks/stopTask', aTask);
-				this.toTasks();
 			}
 			if(state === 'stopped'){
 				this.$store.dispatch('tasks/startTask', aTask);
-				this.toTasks();
 			}
-			if(state === 'done'){
 
-			}
+			this.toTasks();
 		}
 	}
 }
