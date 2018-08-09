@@ -10,6 +10,7 @@
 			:description="task.description"
 			:state="task.state"
 			:time="task.time"
+			:currentTime="task.currentTime"
 			:monks="task.progress.monks"
 			:lap="task.progress.lap"
 		/>

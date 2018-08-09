@@ -20,13 +20,13 @@
 								start task
 							</div>
 							<div class="task-list__tool-stat">
-								{{this.$store.getters['timerGlobal/getParseTime']}}
+								{{this.parsedSeconds}}
 							</div>
 						</div>
 
 						<div v-if="state === 'running'" class="task-list__tool-running">
 							<div class="task-list__tool-stat">
-								{{this.$store.getters['timerGlobal/getParseTime']}}
+								{{this.parsedSeconds}}
 							</div>
 							<div class="task-list__tool-stat" @click="taskStop">
 								stop task
@@ -38,7 +38,7 @@
 								restart task
 							</div>
 							<div class="task-list__tool-stat">
-								{{this.id === this.$store.getters['tasks/getRunningTask'].id ? this.$store.getters['timerGlobal/getParseTime'] : '00:00'}}
+								{{this.parsedSeconds}}
 							</div>
 						</div>
 
@@ -59,11 +59,18 @@
 </template>
 
 <script>
+	import timeParser from '~/assets/modules/time-parser';
+
 	export default{
-		props: ['title', 'action', 'id', 'description', 'state', 'time', 'monks', 'lap', 'task'],
+		props: ['title', 'action', 'id', 'description', 'state', 'time', 'currentTime', 'monks', 'lap', 'task'],
 		data(){
 			return {
 				taskToolActive: this.$route.name === 'task' ? true : false
+			}
+		},
+		computed: {
+			parsedSeconds(){
+				return timeParser.parseSeconds(this.currentTime);
 			}
 		},
 		methods: {

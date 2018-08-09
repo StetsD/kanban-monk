@@ -11,6 +11,19 @@ timer.on('stop', () => {
 
 });
 
+timer.on('tick', () => {
+	let {$nuxt} = window;
+	let runningTask = $nuxt.$store.getters['tasks/getRunningTask'];
+
+	$nuxt.$store.commit('tasks/chTask', {
+		task: {
+			...runningTask,
+			currentTime: runningTask.currentTime + 1,
+		},
+		props: ['currentTime']
+	});
+});
+
 timer.on('monk', () => {
 	let {$nuxt} = window;
 	let runningTask = $nuxt.$store.getters['tasks/getRunningTask'];
@@ -65,11 +78,5 @@ export const actions = {
 	},
 	stop({state, commit}, id){
 		timer.stop(commit, 'stop');
-	}
-}
-
-export const getters = {
-	getParseTime(state){
-		return Timer.parseTime(state.time);
 	}
 }

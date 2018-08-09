@@ -20,6 +20,7 @@ export const state = () => ({
 				created_at: '03.02.2018',
 				done: ''
 			},
+			currentTime: 0,
 			state: 'stopped',
 			progress: {
 				monks: 1,
@@ -42,6 +43,7 @@ export const mutations = {
 				created_at: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
 				done: ''
 			},
+			currentTime: 0,
 			state: 'new',
 			progress: {
 				monks: 0,
