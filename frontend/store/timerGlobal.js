@@ -37,9 +37,10 @@ timer.on('monk', () => {
 					monks: runningTask.progress.monks,
 					lap: runningTask.progress.lap + 1
 				},
+				currentTime: 0,
 				state: 'stopped'
 			},
-			props: ['progress', 'state']
+			props: ['progress', 'state', 'currentTime']
 		});
 	}
 
@@ -50,9 +51,10 @@ timer.on('monk', () => {
 				progress: {
 					monks: runningTask.progress.monks + 1,
 					lap: 0
-				}
+				},
+				currentTime: 0
 			},
-			props: ['progress', 'state']
+			props: ['progress', 'state', 'currentTime']
 		});
 	}
 

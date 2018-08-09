@@ -115,8 +115,8 @@ export const actions = {
 	startTask(ctx, task){
 		$nuxt.$store.dispatch('timerGlobal/stop');
 		$nuxt.$store.commit('tasks/chTask', {
-			task: {...$nuxt.$store.getters['tasks/getRunningTask'], state: 'stopped'},
-			props: ['state']
+			task: {...$nuxt.$store.getters['tasks/getRunningTask'], currentTime: 0, state: 'stopped'},
+			props: ['state', 'currentTime']
 		});
 		$nuxt.$store.commit('tasks/rmRunningTask');
 
@@ -131,8 +131,8 @@ export const actions = {
 	stopTask(ctx, task){
 		$nuxt.$store.dispatch('timerGlobal/stop');
 		$nuxt.$store.commit('tasks/chTask', {
-			task: {...task, state: 'stopped'},
-			props: ['state']
+			task: {...task, state: 'stopped', currentTime: 0},
+			props: ['state', 'currentTime']
 		});
 		$nuxt.$store.commit('tasks/rmRunningTask');
 	}
