@@ -1,8 +1,22 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+let path = require('path');
+
+let indexPublicPath = path.resolve(__dirname, 'public'),
+	indexFilePath = path.resolve(indexPublicPath, 'index.html');
+
+app.use(express.static(indexFilePath));
+
+app.get(/\/[\w+|\d+|-]+\.[\w+|\d+]+/, (req, res) => {
+	res.sendFile(path.normalize(indexPublicPath + req.originalUrl));
+})
+
+app.get("/*", (req, res) => {
+	res.sendFile(indexFilePath);
+});
 
 
 
 app.listen(3000, function () {
-  console.log('Listen 3000!');
+
 });

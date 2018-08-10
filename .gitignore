@@ -10,6 +10,6 @@ node_modules/
 /bower_components
 /.nuxt
 /dist
-#/public
+/public
 /assets
 npm-debug.log

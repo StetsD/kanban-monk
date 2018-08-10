@@ -9,9 +9,10 @@
         "nuxt:build": "nuxt build",
         "nuxt:start": "nuxt start",
         "nuxt:generate": "nuxt generate",
-        "start": "nodemon --inspect index",
+        "start": "npm run nuxt:generate && nodemon --inspect index",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-        "precommit": "npm run lint"
+        "precommit": "npm run lint",
+        "dev:server": "nodemon --inspect index"
     },
     "dependencies": {
         "autosize": "^4.0.2",
@@ -19,7 +20,7 @@
         "hammerjs": "^2.0.8",
         "lodash": "^4.17.10",
         "node-sass": "^4.9.1",
-        "nodemon": "^1.17.5",
+        "nodemon": "^1.18.3",
         "nuxt": "^1.0.0",
         "sass-loader": "^7.0.3"
     },
