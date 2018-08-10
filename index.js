@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const db = require('./models');
+
 let path = require('path');
 
 let indexPublicPath = path.resolve(__dirname, 'public'),
@@ -17,6 +19,7 @@ app.get("/*", (req, res) => {
 
 
 
-app.listen(3000, function () {
 
+app.listen(3000, async () => {
+	await db();
 });
