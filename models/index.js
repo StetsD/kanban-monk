@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const config = require('../config');
 
 
 module.exports = async () => {
-	await mongoose.connect('mongodb://127.0.0.1:27017/kanban-monk', { useNewUrlParser: true });
+	await mongoose.connect(`mongodb://${config.database.host}:${config.database.port}/${config.database.name}`,
+		{ useNewUrlParser: true });
 }
