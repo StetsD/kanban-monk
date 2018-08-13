@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const db = require('./models');
+const connectDB = require('./models');
 const config = require('./config');
 
 let path = require('path');
@@ -22,5 +22,5 @@ app.get("/*", (req, res) => {
 
 
 app.listen(config.port, async () => {
-	await db();
+	await connectDB();
 });
