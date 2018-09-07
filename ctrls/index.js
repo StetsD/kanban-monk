@@ -1,4 +1,6 @@
+let {Router} = require('express');
+let taskRouter = require('./task');
 
-app.get('/', function (req, res) {
-  res.send('Hello Kanban-Monk!');
-});
+module.exports = app => {
+	app.use('/task', taskRouter);
+}

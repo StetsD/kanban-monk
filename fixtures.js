@@ -64,7 +64,6 @@ mongoose.model('users', userSchema);
 		if(err){
 			throw new Error(err);
 		}
-		console.log(data);
 
 		mongoose.connection.close();
 	});

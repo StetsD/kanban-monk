@@ -16,6 +16,5 @@
 </script>
 
 <style lang="scss">
-	@import '../assets/css/tool/reset.scss';
-	@import '../assets/css/index.scss';
+	
 </style>

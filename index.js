@@ -1,7 +1,8 @@
 const express = require('express');
-const app = express();
-const connectDB = require('./models');
-const config = require('./config');
+ 	app = express(),
+ 	connectDB = require('./mdls'),
+ 	config = require('./config'),
+	ctrls = require('./ctrls')(app);
 
 let path = require('path');
 
