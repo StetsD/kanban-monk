@@ -1,7 +1,7 @@
 let mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	fixtures = require('node-mongoose-fixtures'),
-	connectDB = require('./models');
+	connectDB = require('./mdls');
 
 let taskSchema = new Schema({
 	id: Number,

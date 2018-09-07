@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Menu from '~/components/Menu';
 import TaskList from '~/components/TaskList';
 import TaskAdder from '~/components/TaskAdder';
@@ -18,8 +17,8 @@ export default {
 		TaskList,
 		TaskAdder
 	},
-	async data(){
-		let tt = await axios.get('/task');
+	data(){
+		this.$store.dispatch('tasks/getTasks');
 		return {
 			task: this.$store.getters['tasks/getTasks']
 		}
