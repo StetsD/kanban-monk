@@ -4,9 +4,15 @@ let {Router} = require('express'),
 
 router.route('/')
 	.get(async (req, res) => {
-		res.json(await model.get());
+		res.json(await model.getAll());
 	})
-	.post();
+	.post(async (req, res) => {
+		try{
+			res.json(await model.add(req.body));
+		}catch(e){
+			res.status(400).send(e);
+		}
+	});
 
 router.route('/:id')
 	.get()

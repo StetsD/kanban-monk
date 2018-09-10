@@ -14,6 +14,9 @@
 	axios.defaults.baseURL = `${protocol}://${host}:${port}/${api.name}/${api.version}`;
 
 	export default {
+		beforeCreate(){
+			this.$store.dispatch('tasks/getTasks');
+		},
 		components: {
 			Logo
 		}

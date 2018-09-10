@@ -1,28 +1,55 @@
 let mongoose = require('mongoose');
 
 let Schema = new mongoose.Schema({
-	title: String,
-	description: String,
-	time: {
-		created_at: {type: Date, default: Date.now},
-		done: Date
+	id: {
+		type: Number,
+		default: 0
 	},
-	currentTime: Number,
-	state: String,
+	title: {
+		type: String,
+		required: true
+	},
+	description: {
+		type: String,
+		default: ''
+	},
+	time: {
+		created_at: {
+			type: Date,
+			default: Date.now
+		},
+		done: {
+			type: Date
+		}
+	},
+	currentTime: {
+		type: Number,
+		default: 0
+	},
+	state: {
+		type: String,
+		default: 'new'
+	},
 	progress: {
-		monks: Number,
-		lap: Number
+		monks: {
+			type: Number,
+			default: 0
+		},
+		lap: {
+			type: Number,
+			default: 0
+		}
 	}
 });
 
-let Model = mongoose.model('Task', Schema);
-
-async function get(){
-	let res = await Model.find({});
-	return res;
+Schema.statics.getAll = async function(){
+	return await this.find({});
 }
 
-module.exports = {
-	model: Model,
-	get
-};
+Schema.statics.add = async function(data){
+	return await new Model(data).save();
+}
+
+let Model = mongoose.model('Task', Schema);
+
+module.exports = Model;

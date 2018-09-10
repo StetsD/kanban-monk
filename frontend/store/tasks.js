@@ -17,7 +17,7 @@ export const state = () => ({
 
 export const mutations = {
 	addTasks(state, tasks){
-		state.tasks.push(tasks[0]);
+		state.tasks.push(...tasks);
 	},
 	createTask(state, task){
 		let date = new Date();
@@ -76,7 +76,11 @@ export const mutations = {
 export const actions = {
 	async getTasks(ctx){
 		let {data} = await api.getTasks();
-		ctx.commit('addTasks', data);
+		ctx.commit('addTasks', Array.isArray(data) ? data.reverse() : []);
+	},
+	async addTask(ctx, dt){
+		let {data, status} = await api.addTask(dt);
+		status === 200 && ctx.commit('createTask', dt);
 	},
 	rebaseTaskDone(ctx, id){
 		let {tasks} = ctx.state;

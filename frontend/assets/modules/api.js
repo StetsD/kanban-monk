@@ -1,5 +1,6 @@
 const axios = require('axios');
 const checkAuth = require('./check-auth');
+const {task} = require('../../../config').ep;
 
 async function _rq(props){
 	let {method, endpoint, data} = props;
@@ -15,32 +16,32 @@ const api = {
 	async getTasks(){
 		return await _rq({
 			method: 'get',
-			endpoint: `/task`
+			endpoint: `${task}`
 		});
 	},
 	async getTask(id){
 		return await _rq({
 			method: 'get',
-			endpoint: `/task/${id}`
+			endpoint: `${task}/${id}`
 		});
 	},
 	async addTask(data){
 		return await _rq({
 			method: 'post',
-			endpoint: `/task`,
+			endpoint: `${task}`,
 			data
 		});
 	},
 	async deleteTask(id){
 		return await _rq({
 			method: 'delete',
-			endpoint: `/task/${id}`
+			endpoint: `${task}/${id}`
 		});
 	},
 	async editTask(data){
 		return await _rq({
 			method: 'patch',
-			endpoint: `/task`,
+			endpoint: `${task}`,
 			data
 		});
 	}

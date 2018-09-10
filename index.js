@@ -9,9 +9,12 @@ let path = require('path');
 let indexPublicPath = path.resolve(__dirname, 'public'),
 	indexFilePath = path.resolve(indexPublicPath, 'index.html');
 
+// Temp middleware inits
 let cors = require('cors');
-
+let bodyParser = require('body-parser');
 app.use(express.static(indexFilePath));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
 ctrls(app);

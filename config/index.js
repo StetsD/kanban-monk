@@ -22,6 +22,9 @@ const baseConfig = {
 	},
 	paths: {
 		static: '/assets'
+	},
+	ep: {
+		task: '/task'
 	}
 }
 

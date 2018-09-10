@@ -4,7 +4,10 @@ let mongoose = require('mongoose'),
 	connectDB = require('./mdls');
 
 let taskSchema = new Schema({
-	id: Number,
+	id: {
+		type: Number,
+		default: 0
+	},
 	title: String,
 	description: String,
 	time: {

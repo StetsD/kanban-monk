@@ -18,14 +18,13 @@ export default {
 		TaskAdder
 	},
 	data(){
-		this.$store.dispatch('tasks/getTasks');
 		return {
 			task: this.$store.getters['tasks/getTasks']
 		}
 	},
 	methods: {
-		taskAdd(task){
-			this.$store.commit('tasks/createTask', task);
+		taskAdd(data){
+			this.$store.dispatch('tasks/addTask', data);
 		}
 	}
 }
