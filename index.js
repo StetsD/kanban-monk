@@ -12,9 +12,11 @@ let indexPublicPath = path.resolve(__dirname, 'public'),
 // Temp middleware inits
 let cors = require('cors');
 let bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
 app.use(express.static(indexFilePath));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 app.use(cors());
 
 ctrls(app);
