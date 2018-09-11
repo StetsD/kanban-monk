@@ -76,7 +76,7 @@ export const mutations = {
 export const actions = {
 	async getTasks(ctx){
 		let {data} = await api.getTasks();
-		ctx.commit('addTasks', Array.isArray(data) ? data.reverse() : []);
+		ctx.commit('addTasks', Array.isArray(data.tasks) ? data.tasks.reverse() : []);
 	},
 	async addTask(ctx, dt){
 		let {data, status} = await api.addTask(dt);

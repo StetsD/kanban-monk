@@ -1,22 +1,25 @@
 let {Router} = require('express'),
 	router = Router(),
-	model = require('../mdls/task'),
-	{rCli: client} = require('../lib/redis');
+	{Model: model} = require('../mdls/user'),
+	{checkSession} = require('../lib/checkSession');
 
 router.route('/')
 	.get(async (req, res) => {
-		let user = await rCli.hget('', '', (err, data) => {
-			if(err) throw new Error(err);
-			return data;
-		});
-		console.log(user);
-		res.json(await model.getAll());
+		let user = await checkSession('sukablyat');
+		user ?
+			res.json(await model.getTasks(user)) :
+			res.status(400).send();
 	})
 	.post(async (req, res) => {
-		try{
-			res.json(await model.add(req.body));
-		}catch(e){
-			res.status(400).send(e);
+		let user = await checkSession('sukablyat');
+		if(user){
+			try{
+				res.json(await model.addTask(user, req.body));
+			}catch(e){
+				res.status(400).send(e);
+			}
+		}else{
+			res.status(400).send();
 		}
 	});
 

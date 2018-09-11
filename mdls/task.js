@@ -42,14 +42,4 @@ let Schema = new mongoose.Schema({
 	}
 });
 
-Schema.statics.getAll = async function(){
-	return await this.find({});
-}
-
-Schema.statics.add = async function(data){
-	return await new Model(data).save();
-}
-
-let Model = mongoose.model('Task', Schema);
-
-module.exports = Model;
+module.exports = {Schema};

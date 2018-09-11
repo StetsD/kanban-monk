@@ -5,6 +5,9 @@ const baseConfig = {
 	protocol: 'http',
 	port: 8000,
 	keys: ['naprimer', 'fireblaster'],
+	redis: {
+		sessions: 'sessions'
+	},
 	api: {
 		version: 'v1',
 		name: 'api'

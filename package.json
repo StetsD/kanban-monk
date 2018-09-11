@@ -25,9 +25,12 @@
         "hammerjs": "^2.0.8",
         "lodash": "^4.17.10",
         "mongoose": "^5.2.7",
+        "mongoose-auto-increment": "^5.0.1",
+        "mongoose-sequence": "^4.0.1",
         "node-sass": "^4.9.1",
         "nodemon": "^1.18.3",
         "nuxt": "^1.0.0",
+        "redis": "^2.8.0",
         "sass-loader": "^7.0.3"
     },
     "devDependencies": {
