@@ -1,16 +1,16 @@
-module.exports = {
+let {merge} = require('lodash');
+
+const baseConfig = {
 	host: 'localhost',
 	protocol: 'http',
 	port: 8000,
 	keys: ['naprimer', 'fireblaster'],
+	redis: {
+		sessions: 'sessions'
+	},
 	api: {
 		version: 'v1',
 		name: 'api'
-	},
-	database: {
-		host: 'localhost',
-		port: 27017,
-		name: 'kanban-monk'
 	},
 	crypto: {
 		hash: {
@@ -25,5 +25,30 @@ module.exports = {
 	},
 	paths: {
 		static: '/assets'
+	},
+	ep: {
+		task: '/task'
 	}
 }
+
+let envConfig = {};
+
+switch(process.env.NODE_ENV){
+	case 'development':
+	case 'dev':
+		envConfig = require('./dev');
+		break;
+	case 'production':
+	case 'prod':
+		envConfig = require('./prod');
+		break;
+	case 'testing':
+	case 'test':
+		envConfig = require('./test');
+		break;
+	default:
+		envConfig = require('./dev');
+		break;
+}
+
+module.exports = merge(baseConfig, envConfig);

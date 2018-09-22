@@ -1,4 +1,11 @@
+let {Router} = require('express');
+let {api, ep} = require('../config');
+let taskRouter = require('./task');
 
-app.get('/', function (req, res) {
-  res.send('Hello Kanban-Monk!');
-});
+let restRouter = Router();
+
+restRouter.use(ep.task, taskRouter);
+
+module.exports = app => {
+	app.use(`/${api.name}/${api.version}`, restRouter);
+}

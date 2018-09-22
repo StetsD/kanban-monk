@@ -8,7 +8,15 @@
 <script>
 	import Logo from '~/components/Logo';
 
+	let axios = require('axios');
+	let {host,protocol,port,api} = require('../../config');
+
+	axios.defaults.baseURL = `${protocol}://${host}:${port}/${api.name}/${api.version}`;
+
 	export default {
+		beforeCreate(){
+			this.$store.dispatch('tasks/getTasks');
+		},
 		components: {
 			Logo
 		}
@@ -16,6 +24,5 @@
 </script>
 
 <style lang="scss">
-	@import '../assets/css/tool/reset.scss';
-	@import '../assets/css/index.scss';
+
 </style>

@@ -4,6 +4,8 @@
 // stopped(restart:done:delete) /
 // done(startAgain:delete)
 
+import api from '~/assets/modules/api';
+
 export const state = () => ({
 	//running task
 	runningTask: {},
@@ -14,6 +16,9 @@ export const state = () => ({
 });
 
 export const mutations = {
+	addTasks(state, tasks){
+		state.tasks.push(...tasks);
+	},
 	createTask(state, task){
 		let date = new Date();
 		let newTask = {
@@ -69,6 +74,14 @@ export const mutations = {
 }
 
 export const actions = {
+	async getTasks(ctx){
+		let {data} = await api.getTasks();
+		ctx.commit('addTasks', Array.isArray(data.tasks) ? data.tasks.reverse() : []);
+	},
+	async addTask(ctx, dt){
+		let {data, status} = await api.addTask(dt);
+		status === 200 && ctx.commit('createTask', dt);
+	},
 	rebaseTaskDone(ctx, id){
 		let {tasks} = ctx.state;
 
